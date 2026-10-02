@@ -5,7 +5,7 @@ import { spawn } from 'node:child_process'
 import { existsSync } from 'node:fs'
 import { mkdtemp, mkdir, writeFile, rm } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
-import { join } from 'node:path'
+import { join, resolve, sep } from 'node:path'
 
 const executable = process.env.CHROME_PATH || ['C:/Program Files/Google/Chrome/Application/chrome.exe', 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'].find(existsSync)
 if (!executable) throw new Error('Set CHROME_PATH to a Chromium browser executable.')
@@ -44,15 +44,18 @@ socket.addEventListener('message', async event => {
     const { requestId, request } = message.params
     if (request.method !== 'GET') writes++
     await send('Fetch.fulfillRequest', { requestId, responseCode: mode === 'error' ? 503 : 200, responseHeaders: [{ name: 'Content-Type', value: 'application/json' }, { name: 'Access-Control-Allow-Origin', value: base }, { name: 'Access-Control-Allow-Credentials', value: 'true' }], body: Buffer.from(JSON.stringify(mode === 'empty' ? [] : mode === 'error' ? { message: 'Unavailable' } : records)).toString('base64') }, message.sessionId)
+  } else if (message.method === 'Page.javascriptDialogOpening' && message.params.type === 'beforeunload') {
+    await send('Page.handleJavaScriptDialog', { accept: true }, message.sessionId)
   } else if (message.method === 'Runtime.exceptionThrown') events.push(message.params.exceptionDetails)
 })
 const { targetId } = await send('Target.createTarget', { url: 'about:blank' })
 const { sessionId } = await send('Target.attachToTarget', { targetId, flatten: true })
+await send('Target.activateTarget', { targetId })
 const cdp = (method, params) => send(method, params, sessionId)
 const evaluate = async expression => { const result = await cdp('Runtime.evaluate', { expression, returnByValue: true, awaitPromise: true }); if (result.exceptionDetails) throw new Error(result.exceptionDetails.text); return result.result.value }
 const waitFor = async expression => { for (let i = 0; i < 80; i++) { if (await evaluate(expression)) return; await new Promise(resolve => setTimeout(resolve, 100)) } throw new Error(`Condition not met: ${expression}`) }
 const navigate = async path => { await cdp('Page.navigate', { url: base + path }); await waitFor('!!document.querySelector("h1")'); }
-const click = text => evaluate(`Array.from(document.querySelectorAll('button,a')).find(el => el.textContent.trim() === ${JSON.stringify(text)})?.click()`)
+const click = text => evaluate(`(() => { const el = Array.from(document.querySelectorAll('button,a')).find(el => el.textContent.trim() === ${JSON.stringify(text)}); if (!el) throw new Error('Control not found'); el.focus(); el.click(); })()`)
 const fill = (selector, value) => evaluate(`(() => { const el = document.querySelector(${JSON.stringify(selector)}); const setter = Object.getOwnPropertyDescriptor(el instanceof HTMLTextAreaElement ? HTMLTextAreaElement.prototype : HTMLInputElement.prototype, 'value').set; setter.call(el, ${JSON.stringify(value)}); el.dispatchEvent(new Event('input', { bubbles: true })); el.dispatchEvent(new Event('change', { bubbles: true })); })()`)
 const screenshot = async name => { const { data } = await cdp('Page.captureScreenshot', { format: 'png', captureBeyondViewport: false }); await writeFile(join(output, name + '.png'), Buffer.from(data, 'base64')) }
 try {
@@ -97,8 +100,8 @@ try {
   await waitFor('document.body.textContent.includes("Alerta Preventivo de Duplicidade")')
   await click('Verificar Registro Existente')
   await waitFor('!!document.querySelector("dialog[open]")')
-  await cdp('Input.dispatchKeyEvent', { type: 'keyDown', key: 'Escape', code: 'Escape' })
-  await cdp('Input.dispatchKeyEvent', { type: 'keyUp', key: 'Escape', code: 'Escape' })
+  await cdp('Input.dispatchKeyEvent', { type: 'keyDown', key: 'Escape', code: 'Escape', windowsVirtualKeyCode: 27, nativeVirtualKeyCode: 27 })
+  await cdp('Input.dispatchKeyEvent', { type: 'keyUp', key: 'Escape', code: 'Escape', windowsVirtualKeyCode: 27, nativeVirtualKeyCode: 27 })
   await waitFor('!document.querySelector("dialog[open]")')
   assert.equal(await evaluate('document.activeElement.textContent'), 'Verificar Registro Existente')
   await click('Salvar como Rascunho')
@@ -149,5 +152,8 @@ try {
   await send('Browser.close').catch(() => {})
   socket.close()
   child.kill()
-  await rm(profile, { recursive: true, force: true, maxRetries: 5, retryDelay: 200 }).catch(() => {})
+  const resolvedProfile = resolve(profile)
+  if (resolvedProfile.startsWith(resolve(tmpdir()) + sep) && resolvedProfile.split(sep).at(-1).startsWith('sisagen-ui-')) {
+    await rm(resolvedProfile, { recursive: true, force: true, maxRetries: 5, retryDelay: 200 }).catch(() => {})
+  }
 }

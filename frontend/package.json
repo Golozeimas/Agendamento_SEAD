@@ -7,6 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
+    "test": "node --test tests/request-filters.test.mjs",
+    "test:ui": "node tests/ui-smoke.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
