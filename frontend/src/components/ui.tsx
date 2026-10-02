@@ -31,8 +31,8 @@ export function Unavailable({ children }: { children?: ReactNode }) {
 export function StatusBadge({ status }: { status: string }) {
   return <span className={`badge ${status === 'CADASTRADO' ? 'registered' : 'pending'}`}>{status === 'CADASTRADO' ? 'Cadastrado' : 'Pendente'}</span>
 }
-export function Stats({ items }: { items: { label: string; value: string | number; hint: string; tone?: string }[] }) {
-  return <div className="stats">{items.map(item => <section className={`card stat ${item.tone ?? ''}`} key={item.label}><p>{item.label}</p><strong>{item.value}</strong><small>{item.hint}</small></section>)}</div>
+export function Stats({ items }: { items: { label: string; value: string | number; hint: string; tone?: string; eyebrow?: string }[] }) {
+  return <div className="stats">{items.map(item => <section className={`card stat ${item.tone ?? ''}`} key={item.label}><span className="stat-icon"><Icon name={item.tone === 'green' ? 'shield' : 'calendar'} /></span><p className="stat-eyebrow">{item.eyebrow ?? item.label}</p>{item.eyebrow && <h2>{item.label}</h2>}<div className="stat-value"><strong>{item.value}</strong><small>{item.hint}</small></div></section>)}</div>
 }
 export function Modal({ title, children, onClose }: { title: string; children: ReactNode; onClose: () => void }) {
   const ref = useRef<HTMLDialogElement>(null)

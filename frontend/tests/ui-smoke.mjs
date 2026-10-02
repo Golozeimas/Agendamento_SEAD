@@ -147,6 +147,16 @@ try {
   await waitFor('document.querySelectorAll("tbody tr").length === 10')
   assert.deepEqual(events, [])
   console.log('PASS empty/error/retry states; no runtime exceptions')
+  if (process.argv.includes('--references')) {
+    await cdp('Emulation.setDeviceMetricsOverride', { width: 1440, height: 1000, deviceScaleFactor: 1, mobile: false })
+    for (const name of ['login', 'usuarios', 'cadastro', 'dados_do_usuario', 'admin']) {
+      await cdp('Page.navigate', { url: new URL(`../../references/${name}.html`, import.meta.url).href })
+      await waitFor('document.readyState === "complete" && !!document.querySelector("h1")')
+      await evaluate('document.fonts.ready')
+      await screenshot(`reference-${name}`)
+    }
+    console.log('PASS reference screenshots captured for visual comparison')
+  }
   console.log(`Screenshots: ${output}`)
 } finally {
   await send('Browser.close').catch(() => {})
