@@ -1,0 +1,44 @@
+import { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { Link, useNavigate } from 'react-router-dom'
+import { Modal, Notice, PageHeader, Section, StatusBadge, Unavailable } from '../components/ui'
+import { useRequests } from '../services/requests'
+
+interface Fields { nome: string; telefone: string; cidade: string; rua: string; quadra: string; lote: string; observacoes: string }
+const empty: Fields = { nome: '', telefone: '', cidade: '', rua: '', quadra: '', lote: '', observacoes: '' }
+const draftKey = 'sisagen.request-draft.v1'
+function readDraft(): Fields {
+  try { const saved: unknown = JSON.parse(localStorage.getItem(draftKey) ?? 'null'); if (!saved || typeof saved !== 'object') return empty; return Object.fromEntries(Object.entries(empty).map(([key, value]) => [key, typeof (saved as Record<string, unknown>)[key] === 'string' ? (saved as Record<string, string>)[key] : value])) as unknown as Fields } catch { return empty }
+}
+export function RequestForm() {
+  const navigate = useNavigate()
+  const query = useRequests()
+  const [cancel, setCancel] = useState(false)
+  const [inspect, setInspect] = useState(false)
+  const [ignored, setIgnored] = useState('')
+  const [message, setMessage] = useState('')
+  const { register, handleSubmit, watch, getValues, formState: { errors, isDirty } } = useForm<Fields>({ defaultValues: readDraft() })
+  const values = watch()
+  const phone = values.telefone.replace(/\D/g, '')
+  const duplicate = phone.length >= 10 ? query.data?.find(item => item.telefone.replace(/\D/g, '') === phone && item.cidade.toLocaleLowerCase() === values.cidade.toLocaleLowerCase()) : undefined
+  useEffect(() => {
+    const warn = (event: BeforeUnloadEvent) => { if (isDirty) event.preventDefault() }
+    window.addEventListener('beforeunload', warn)
+    return () => window.removeEventListener('beforeunload', warn)
+  }, [isDirty])
+  const leave = () => { if (isDirty || Object.values(getValues()).some(Boolean)) setCancel(true); else navigate('/solicitacoes') }
+  const saveDraft = () => { try { localStorage.setItem(draftKey, JSON.stringify(getValues())); setMessage('Rascunho salvo neste navegador. Ele será recuperado ao abrir uma nova solicitação.') } catch { setMessage('Não foi possível salvar o rascunho neste navegador. Mantenha esta página aberta para preservar o preenchimento.') } }
+  return <><PageHeader eyebrow={<Link to="/solicitacoes">Solicitações / Nova Solicitação</Link>} title="Cadastrar Nova Solicitação" description="Preencha os campos obrigatórios para inserir um novo agendamento na fila operacional."><StatusBadge status="PENDENTE" /></PageHeader>
+    <Unavailable>O envio de solicitações aguarda a habilitação do acesso às contas. Você pode preencher e salvar um rascunho neste navegador.</Unavailable>
+    {message && <Notice>{message}</Notice>}
+    {duplicate && ignored !== duplicate.id && <div className="notice warning"><strong>Alerta Preventivo de Duplicidade</strong><p>Já existe uma solicitação para este telefone em {duplicate.cidade}. Revise os dados antes de prosseguir.</p><div className="actions"><button onClick={() => setInspect(true)}>Verificar Registro Existente</button><button onClick={() => setIgnored(duplicate.id)}>Ignorar e Continuar</button></div></div>}
+    <form id="request-form" className="two-columns form-layout" onSubmit={handleSubmit(() => setMessage('Não foi possível enviar: é necessário autenticar um operador antes de cadastrar a solicitação.'))}>
+      <div className="stack"><Section title="1. Identificação e Contato" subtitle="Dados cadastrais do titular solicitante" icon="person"><div className="form-grid"><label className="full">Nome Completo *<input autoComplete="name" placeholder="Conforme documento oficial" aria-invalid={!!errors.nome} {...register('nome', { required: 'Informe o nome completo.', validate: value => value.trim().length >= 3 || 'Informe ao menos 3 caracteres.' })} />{errors.nome && <span className="field-error">{errors.nome.message}</span>}</label><label>Telefone de Contato *<input type="tel" autoComplete="tel" placeholder="(62) 99999-9999" aria-invalid={!!errors.telefone} {...register('telefone', { required: 'Informe o telefone.', validate: value => /^\d{10,11}$/.test(value.replace(/\D/g, '')) || 'Informe DDD e telefone (10 ou 11 dígitos).' })} />{errors.telefone && <span className="field-error">{errors.telefone.message}</span>}<small>Preferencialmente celular com WhatsApp ativo</small></label><label>Data da Solicitação<input value={new Date().toLocaleDateString('pt-BR')} readOnly /><small>Data atual · definida ao enviar</small></label></div></Section>
+      <Section title="2. Endereço do Agendamento" subtitle="Localização da visita e endereço do solicitante" icon="location"><div className="form-grid"><label>Cidade *<input autoComplete="address-level2" list="cities" placeholder="Selecione ou informe a cidade" aria-invalid={!!errors.cidade} {...register('cidade', { validate: value => !!value.trim() || 'Informe a cidade.' })} /><datalist id="cities">{['Goiânia', 'Aparecida de Goiânia', 'Senador Canedo', 'Trindade', 'Anápolis'].map(city => <option key={city}>{city}</option>)}</datalist>{errors.cidade && <span className="field-error">{errors.cidade.message}</span>}</label><label>Rua / Logradouro *<input autoComplete="street-address" placeholder="Ex: Avenida T-63, Setor Bueno" aria-invalid={!!errors.rua} {...register('rua', { validate: value => !!value.trim() || 'Informe o logradouro.' })} />{errors.rua && <span className="field-error">{errors.rua.message}</span>}</label><label>Quadra (QD)<input placeholder="Ex: 15" {...register('quadra')} /></label><label>Lote (LT)<input placeholder="Ex: 02" {...register('lote')} /></label></div></Section>
+      <Section title="3. Observações Adicionais" subtitle="Pontos de referência, restrições e instruções da equipe externa"><label>Instruções e Ponto de Referência <small className="counter">{values.observacoes.length} / 500 caracteres</small><textarea rows={4} maxLength={500} placeholder="Informe os pontos de referência e instruções de atendimento." {...register('observacoes', { maxLength: 500 })} /></label></Section></div>
+      <aside className="stack"><Section title="Endereço informado" icon="location"><p>{values.rua || 'Preencha o endereço do agendamento.'}</p><h3>{values.cidade || 'Cidade não informada'}</h3><small>A localização será registrada conforme os dados preenchidos.</small></Section><Section title="Capacidade da Fila" icon="calendar"><p>Solicitações pendentes na cidade informada</p><strong className="large-number">{query.isSuccess && values.cidade ? query.data.filter(item => item.cidade.toLocaleLowerCase() === values.cidade.toLocaleLowerCase() && item.status === 'PENDENTE').length : '—'}</strong><Notice>Ao salvar, o agendamento entra na fila com status Pendente.</Notice></Section><Section title="Checklist de Validação" icon="shield"><ul className="checklist"><li>{values.nome.trim().includes(' ') ? '✓' : '○'} Nome completo informado</li><li>{/^\d{10,11}$/.test(phone) ? '✓' : '○'} Telefone com DDD</li><li>{values.cidade && values.rua ? '✓' : '○'} Endereço preenchido</li><li>{query.isError ? 'Verificação de duplicidade indisponível' : duplicate ? 'Possível duplicidade encontrada' : 'Sem correspondência na fila carregada'}</li></ul></Section></aside>
+    </form><div className="bottom-bar"><button onClick={leave}>Cancelar</button><small>* Campos obrigatórios</small><div className="actions"><button onClick={saveDraft}>Salvar como Rascunho</button><button className="primary" type="submit" form="request-form">Salvar Solicitação</button></div></div>
+    {cancel && <Modal title="Descartar alterações?" onClose={() => setCancel(false)}><p>Os dados deste formulário serão descartados, incluindo o rascunho salvo neste navegador.</p><div className="modal-actions"><button onClick={() => setCancel(false)}>Continuar Editando</button><button className="danger" onClick={() => { try { localStorage.removeItem(draftKey) } catch { setMessage('Não foi possível remover o rascunho. Tente novamente.'); setCancel(false); return } navigate('/solicitacoes') }}>Descartar e Sair</button></div></Modal>}
+    {inspect && duplicate && <Modal title="Comparativo de Duplicidade Preventiva" onClose={() => setInspect(false)}><div className="form-grid"><div><h3>Registro existente</h3><p>{duplicate.nome}</p><p>{duplicate.telefone}</p><p>{duplicate.rua}, {duplicate.cidade}</p><StatusBadge status={duplicate.status} /></div><div><h3>Em preenchimento</h3><p>{values.nome}</p><p>{values.telefone}</p><p>{values.rua}, {values.cidade}</p><StatusBadge status="PENDENTE" /></div></div><div className="modal-actions"><button onClick={() => setInspect(false)}>Manter Este Formulário</button><button className="primary" onClick={() => { saveDraft(); navigate(`/solicitacoes/${duplicate.id}`) }}>Abrir Registro Existente</button></div></Modal>}
+  </>
+}
