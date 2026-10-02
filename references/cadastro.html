@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "status-active-text": "#0369A1",
+          "feedback-error-text": "#991B1B",
+          "tertiary-fixed": "#ffdcc3",
+          "status-registered-text": "#065F46",
+          "primary-container": "#1e3a8a",
+          "status-pending-bg": "#FEF3C7",
+          "error-container": "#ffdad6",
+          "on-surface-variant": "#444651",
+          "status-archived-bg": "#F1F5F9",
+          "on-tertiary": "#ffffff",
+          "on-secondary-fixed-variant": "#005049",
+          "tertiary-container": "#653400",
+          "inverse-surface": "#213145",
+          "secondary-container": "#86f2e4",
+          "status-pending-text": "#92400E",
+          "surface-canvas": "#F8FAFC",
+          "on-tertiary-fixed-variant": "#6e3900",
+          "on-background": "#0b1c30",
+          "status-inactive": "#94A3B8",
+          "secondary-fixed-dim": "#6bd8cb",
+          "tertiary-fixed-dim": "#ffb77d",
+          "inverse-on-surface": "#eaf1ff",
+          "surface-container-high": "#dce9ff",
+          "status-registered": "#059669",
+          "feedback-error-bg": "#FEE2E2",
+          "background": "#f8f9ff",
+          "on-tertiary-fixed": "#2f1500",
+          "feedback-error": "#DC2626",
+          "secondary": "#006a61",
+          "feedback-warning-text": "#9A3412",
+          "surface-container-low": "#eff4ff",
+          "on-primary-fixed": "#00164e",
+          "border-subtle": "#E2E8F0",
+          "status-inactive-bg": "#F8FAFC",
+          "secondary-fixed": "#89f5e7",
+          "status-archived-text": "#334155",
+          "on-surface": "#0b1c30",
+          "surface-dim": "#cbdbf5",
+          "surface": "#f8f9ff",
+          "primary-fixed-dim": "#b6c4ff",
+          "on-error": "#ffffff",
+          "on-tertiary-container": "#fc922b",
+          "tertiary": "#442100",
+          "on-primary-container": "#90a8ff",
+          "surface-variant": "#d3e4fe",
+          "status-active": "#0284C7",
+          "on-secondary": "#ffffff",
+          "feedback-warning-bg": "#FFEDD5",
+          "on-secondary-container": "#006f66",
+          "border-strong": "#CBD5E1",
+          "status-active-bg": "#E0F2FE",
+          "surface-container-highest": "#d3e4fe",
+          "on-error-container": "#93000a",
+          "error": "#ba1a1a",
+          "status-archived": "#475569",
+          "surface-bright": "#f8f9ff",
+          "surface-container-lowest": "#ffffff",
+          "status-inactive-text": "#64748B",
+          "on-primary": "#ffffff",
+          "primary-fixed": "#dce1ff",
+          "surface-tint": "#4059aa",
+          "outline": "#757682",
+          "surface-container": "#e5eeff",
+          "surface-sidebar": "#0F172A",
+          "on-primary-fixed-variant": "#264191",
+          "feedback-warning": "#EA580C",
+          "primary": "#00236f",
+          "on-secondary-fixed": "#00201d",
+          "outline-variant": "#c5c5d3",
+          "surface-card": "#FFFFFF",
+          "status-pending": "#D97706",
+          "inverse-primary": "#b6c4ff",
+          "status-registered-bg": "#D1FAE5"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        "spacing": {
+          "space-md": "0.75rem",
+          "space-2xl": "2.5rem",
+          "margin": "1rem",
+          "space-xl": "1.75rem",
+          "margin-desktop": "2rem",
+          "space-xs": "0.25rem",
+          "gutter": "1rem",
+          "space-sm": "0.5rem",
+          "space-lg": "1.25rem",
+          "gutter-desktop": "1.5rem"
+        },
+        "fontFamily": {
+          "body-sm": [
+            "Inter"
+          ],
+          "headline-sm": [
+            "Inter"
+          ],
+          "body-lg": [
+            "Inter"
+          ],
+          "headline-md": [
+            "Inter"
+          ],
+          "label-md": [
+            "Inter"
+          ],
+          "data-mono": [
+            "Inter"
+          ],
+          "display-lg": [
+            "Inter"
+          ],
+          "label-sm": [
+            "Inter"
+          ],
+          "headline-lg": [
+            "Inter"
+          ],
+          "body-md": [
+            "Inter"
+          ]
+        },
+        "fontSize": {
+          "body-sm": [
+            "13px",
+            {
+              "lineHeight": "18px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-sm": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "letterSpacing": "-0.005em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-lg": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-md": [
+            "20px",
+            {
+              "lineHeight": "28px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ],
+          "label-md": [
+            "13px",
+            {
+              "lineHeight": "18px",
+              "fontWeight": "500"
+            }
+          ],
+          "data-mono": [
+            "13px",
+            {
+              "lineHeight": "18px",
+              "fontWeight": "500"
+            }
+          ],
+          "display-lg": [
+            "30px",
+            {
+              "lineHeight": "38px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "700"
+            }
+          ],
+          "label-sm": [
+            "11px",
+            {
+              "lineHeight": "16px",
+              "letterSpacing": "0.02em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-lg": [
+            "24px",
+            {
+              "lineHeight": "32px",
+              "letterSpacing": "-0.015em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "400"
+            }
+          ]
+        }
+      },
+    },
+  }</script></head><body class="bg-surface-canvas font-body-md text-on-surface antialiased selection:bg-primary selection:text-on-primary"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-card shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 w-full px-margin-desktop flex items-center justify-between"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-md"><img alt="Logo Sistema de Agendamento" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VHjf6Eevh7SMXlsSz3zYvXZu8TTP6sheYdu3M9kqk90ttDqZLX8_lgSBaCAXPmO9uiMHUpMEBfHazMDzmP8YitKxu3XFFPZtPx9nojBXFBVEWf4zBEVRnkMCoZq9ER9Qrisdt8CY7qOlkvmAwC7tcEoJCEmyuOE8G373ozoNRA_LJSXDNl_BVvy7UGSIM2m2qDMdNO_BbxynH-sx0u3u9LXFoL2D2ACLccrXVShOoS0n3ojoomD2aCTOM"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight leading-none">Sistema de Agendamento</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-0.5">Operações &amp; Registro</span></div></div><div class="h-6 w-[1px] bg-border-subtle hidden md:block"></div><nav class="hidden md:flex items-center gap-space-xs" data-active-classes="bg-surface-container text-primary font-label-md rounded-lg"><a class="px-space-md py-space-sm rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="solicitacoes" href="#">Solicitações</a><a class="flex items-center gap-space-xs px-space-md py-space-sm rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="usuarios" href="#"><span>Usuários</span><span class="px-1.5 py-0.5 rounded font-label-sm text-[10px] uppercase tracking-wider bg-surface-container text-on-surface-variant border border-border-subtle">Admin</span></a><a class="px-space-md py-space-sm rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="historico-de-auditoria" href="#">Histórico</a></nav></div><div class="flex items-center gap-space-md"><div class="hidden sm:flex items-center gap-space-sm bg-surface-container-lowest px-space-md py-1.5 rounded-lg border border-border-subtle"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKDvwa5wZTs_a425999Az-7ggW2ZP0Qh2Fy79HrXlH6czN-L2wQpG0ANlS-HHkO1D-OkFZBSYEUXtA4VITTx410ImREL5zQOWnNmsn_aze12SejScYcRBsclXaLg1btMsC2lgU8W4EUM84MbpCKCtZKHpur2DkogkARXjWB2vzNGeow2xidOCnf-x0CtsQaMVNCh4rbk8f8YhyUJBDjKOFOEl4P3SgA8KAUhxhtDTm1y50f1GssgDJ"/><div class="flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface font-semibold leading-tight">Mariana Silva</span><div class="flex items-center gap-1 mt-0.5"><span class="inline-flex items-center px-1.5 py-0.2 rounded font-label-sm text-label-sm bg-status-active-bg text-status-active-text">Administrador</span></div></div></div><a class="flex items-center gap-space-xs px-space-md py-space-sm rounded-lg font-label-md text-label-md text-feedback-error hover:bg-feedback-error-bg hover:text-feedback-error-text transition-colors" data-path="login" href="#" title="Encerrar sessão"><span class="material-symbols-outlined text-[18px]">logout</span><span class="hidden sm:inline">Sair</span></a></div></div></header><main class="w-full pt-16 bg-surface-canvas min-h-screen"><div class="flex flex-col w-full pb-32">
+<!-- Top Ambient Glow -->
+<div class="relative w-full overflow-hidden">
+<div class="absolute -top-24 left-1/4 w-96 h-96 bg-primary-fixed-dim/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute top-10 right-10 w-80 h-80 bg-secondary-fixed/15 rounded-full blur-3xl pointer-events-none"></div>
+<div class="max-w-7xl mx-auto px-margin md:px-margin-desktop pt-6">
+<!-- Breadcrumb Bar -->
+<nav class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant mb-space-sm">
+<a class="hover:text-primary transition-colors flex items-center gap-1" data-path="solicitacoes" href="#">
+<span class="material-symbols-outlined text-[15px]">event_note</span>
+          Solicitações
+        </a>
+<span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
+<span class="text-on-surface font-semibold">Nova Solicitação</span>
+<span class="mx-2 text-outline-variant">•</span>
+<span class="font-data-mono text-data-mono text-outline">ID: AUTO-GERADO</span>
+</nav>
+<!-- Screen Title & Metadata Context -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md mb-space-lg">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-sm flex-wrap">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Cadastrar Nova Solicitação</h1>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-status-pending-bg text-status-pending-text font-label-sm text-label-sm uppercase tracking-wide shadow-sm">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+              Status inicial: Pendente
+            </div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Preencha os campos obrigatórios para inserir um novo agendamento na fila operacional prioritária.</p>
+</div>
+<!-- Concurrency / Live Session Indicator Badge -->
+<div class="flex items-center gap-space-sm self-start lg:self-auto bg-surface-card px-space-md py-2 rounded-lg shadow-sm">
+<div class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-status-active opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-status-active"></span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface">Operador Mariana Silva</span>
+<span class="font-data-mono text-[11px] text-outline leading-none">Terminal GO-01 • Fila Aberta</span>
+</div>
+</div>
+</div>
+<!-- RN-08: Preventive Duplicate Warning Banner -->
+<div class="w-full mb-space-xl p-space-md md:p-space-lg rounded-xl bg-feedback-warning-bg shadow-sm transition-all duration-300" id="duplicate-warning-banner">
+<div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-feedback-warning/20 flex items-center justify-center shrink-0 text-feedback-warning-text">
+<span class="material-symbols-outlined text-[24px]">warning_amber</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-feedback-warning-text">Alerta Preventivo de Duplicidade (Regra RN-08)</span>
+<span class="px-1.5 py-0.5 rounded font-label-sm text-[10px] uppercase bg-feedback-warning text-on-primary">Similaridade Alta</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface mt-0.5 leading-relaxed">
+                Atenção: Já existe uma solicitação cadastrada para o telefone <strong class="font-semibold text-feedback-warning-text">(62) 98122-3344</strong> em <strong class="font-semibold">Goiânia</strong> registrada há 2 dias (Protocolo <span class="font-data-mono text-data-mono font-bold">#2026-0894</span>). Revise os dados antes de prosseguir.
+              </p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm w-full md:w-auto shrink-0 justify-end">
+<button class="px-space-md h-9 rounded bg-surface-card hover:bg-surface text-feedback-warning-text font-label-md text-label-md transition-colors shadow-sm flex items-center gap-1.5" onclick="openDuplicateInspector()" type="button">
+<span class="material-symbols-outlined text-[17px]">visibility</span>
+<span>Verificar Registro Existente</span>
+</button>
+<button class="px-space-md h-9 rounded bg-feedback-warning text-on-primary hover:opacity-90 font-label-md text-label-md transition-all flex items-center gap-1 shadow-sm" onclick="dismissDuplicateBanner()" type="button">
+<span class="material-symbols-outlined text-[17px]">done</span>
+<span>Ignorar e Continuar</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Main Bento Grid Form & Context Sidebar -->
+<form class="grid grid-cols-12 gap-space-lg" id="solicitacao-form" onsubmit="handleFormSubmit(event)">
+<!-- Left Column: Form Sections -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-space-lg">
+<!-- Section 1: Identificação e Contato -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between pb-space-md mb-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">person_outline</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">1. Identificação e Contato</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Dados cadastrais do titular solicitante</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-outline-variant uppercase tracking-wider">Etapa 01 / 03</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Nome Completo (Full Width inside Section) -->
+<div class="md:col-span-2 flex flex-col gap-1.5">
+<div class="flex justify-between items-center">
+<label class="font-label-md text-label-md text-on-surface flex items-center gap-1" for="nome-completo">
+                    Nome Completo <span class="text-feedback-error font-bold">*</span>
+</label>
+<span class="font-label-sm text-label-sm text-outline">Conforme documento oficial</span>
+</div>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[18px]">badge</span>
+</span>
+<input class="w-full h-10 pl-9 pr-3 rounded bg-surface-container-lowest text-on-surface font-body-md text-body-md shadow-inner focus:outline-none focus:ring-2 focus:ring-primary-container/30 transition-all placeholder:text-outline" id="nome-completo" placeholder="Digite o nome completo do solicitante" required="" type="text" value="Cláudia Regina de Vasconcelos"/>
+</div>
+</div>
+<!-- Telefone de Contato -->
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center">
+<label class="font-label-md text-label-md text-on-surface flex items-center gap-1" for="telefone">
+                    Telefone de Contato <span class="text-feedback-error font-bold">*</span>
+</label>
+<span class="font-label-sm text-[11px] text-feedback-warning font-medium flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[13px]">notification_important</span>
+                    Gatilho RN-08
+                  </span>
+</div>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[18px]">call</span>
+</span>
+<input class="w-full h-10 pl-9 pr-10 rounded bg-surface-container-lowest text-on-surface font-data-mono text-data-mono shadow-inner focus:outline-none focus:ring-2 focus:ring-primary-container/30 transition-all" id="telefone" maxlength="15" required="" type="tel" value="(62) 98122-3344"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-feedback-warning">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+</div>
+</div>
+<p class="font-body-sm text-[12px] text-outline">Preferencialmente celular com WhatsApp ativo</p>
+</div>
+<!-- Data da Solicitação -->
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center">
+<label class="font-label-md text-label-md text-on-surface flex items-center gap-1" for="data-solicitacao">
+                    Data da Solicitação <span class="text-feedback-error font-bold">*</span>
+</label>
+<span class="font-label-sm text-label-sm text-status-active-text font-medium">Bloqueado para hoje</span>
+</div>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+</span>
+<input class="w-full h-10 pl-9 pr-3 rounded bg-surface-container-lowest text-on-surface font-data-mono text-data-mono shadow-inner focus:outline-none focus:ring-2 focus:ring-primary-container/30 transition-all" id="data-solicitacao" required="" type="date" value="2026-10-15"/>
+</div>
+<p class="font-body-sm text-[12px] text-outline">Timestamp registrado: 15/10/2026 às 14:32 BRT</p>
+</div>
+</div>
+</div>
+<!-- Section 2: Endereço do Agendamento -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between pb-space-md mb-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">pin_drop</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">2. Endereço do Agendamento</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Localização da visita técnica e rota geográfica</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-outline-variant uppercase tracking-wider">Etapa 02 / 03</span>
+</div>
+<div class="grid grid-cols-12 gap-space-md">
+<!-- Cidade -->
+<div class="col-span-12 md:col-span-5 flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface flex items-center gap-1" for="cidade">
+                  Cidade <span class="text-feedback-error font-bold">*</span>
+</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[18px]">location_city</span>
+</span>
+<select class="w-full h-10 pl-9 pr-8 rounded bg-surface-container-lowest text-on-surface font-body-md text-body-md shadow-inner focus:outline-none focus:ring-2 focus:ring-primary-container/30 transition-all appearance-none cursor-pointer" id="cidade" required="">
+<option selected="" value="Goiânia">Goiânia (Região Metropolitana)</option>
+<option value="Aparecida de Goiânia">Aparecida de Goiânia</option>
+<option value="Senador Canedo">Senador Canedo</option>
+<option value="Trindade">Trindade</option>
+<option value="Anápolis">Anápolis (Pólo Industrial)</option>
+</select>
+<span class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[18px]">expand_more</span>
+</span>
+</div>
+</div>
+<!-- Rua / Logradouro -->
+<div class="col-span-12 md:col-span-7 flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface flex items-center gap-1" for="logradouro">
+                  Rua / Logradouro <span class="text-feedback-error font-bold">*</span>
+</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[18px]">signpost</span>
+</span>
+<input class="w-full h-10 pl-9 pr-3 rounded bg-surface-container-lowest text-on-surface font-body-md text-body-md shadow-inner focus:outline-none focus:ring-2 focus:ring-primary-container/30 transition-all placeholder:text-outline" id="logradouro" placeholder="Ex: Rua 87, Alameda dos Buritis" required="" type="text" value="Avenida T-63, Setor Bueno"/>
+</div>
+</div>
+<!-- Quadra -->
+<div class="col-span-12 md:col-span-6 flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface" for="quadra">
+                  Quadra (QD)
+                </label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[18px]">grid_view</span>
+</span>
+<input class="w-full h-10 pl-9 pr-3 rounded bg-surface-container-lowest text-on-surface font-body-md text-body-md shadow-inner focus:outline-none focus:ring-2 focus:ring-primary-container/30 transition-all placeholder:text-outline" id="quadra" placeholder="Ex: QD 15, Bloco B" type="text" value="QD 15"/>
+</div>
+</div>
+<!-- Lote -->
+<div class="col-span-12 md:col-span-6 flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface" for="lote">
+                  Lote (LT)
+                </label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[18px]">door_front</span>
+</span>
+<input class="w-full h-10 pl-9 pr-3 rounded bg-surface-container-lowest text-on-surface font-body-md text-body-md shadow-inner focus:outline-none focus:ring-2 focus:ring-primary-container/30 transition-all placeholder:text-outline" id="lote" placeholder="Ex: LT 02, Apto 401" type="text" value="LT 02"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 3: Observações Adicionais -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between pb-space-md mb-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">sticky_note_2</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">3. Observações Adicionais</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Pontos de referência, restrições e instruções da equipe externa</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-outline-variant uppercase tracking-wider">Etapa 03 / 03</span>
+</div>
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center">
+<label class="font-label-md text-label-md text-on-surface" for="observacoes">
+                  Instruções e Ponto de Referência
+                </label>
+<span class="font-data-mono text-[11px] text-outline" id="char-counter">142 / 500 caracteres</span>
+</div>
+<textarea class="w-full p-3 rounded bg-surface-container-lowest text-on-surface font-body-md text-body-md shadow-inner focus:outline-none focus:ring-2 focus:ring-primary-container/30 transition-all placeholder:text-outline leading-relaxed" id="observacoes" maxlength="500" oninput="updateCharCount(this)" placeholder="Ex: Prédio comercial espelhado ao lado da farmácia. Interfone 402. Preferência para contato no período vespertino." rows="4">Prédio comercial Edifício Executive Center. Ponto de referência: Próximo à Praça da Nova Suíça, portaria lateral com identificação biométrica.</textarea>
+<p class="font-body-sm text-[12px] text-outline">Visível para os registradores e cadastradores em campo no tablet operacional.</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Visual Validation, Context Map, and Concurrency Auditing -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-space-lg">
+<!-- Territorial Sector Map View -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">map</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Geolocalização do Setor</h3>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container text-primary font-data-mono text-[11px]">ZONA SUL</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Validação da malha urbana para agendamento em Goiânia.</p>
+<div class="w-full h-48 rounded-lg relative overflow-hidden shadow-inner flex flex-col justify-end p-space-sm" data-location="Setor Bueno, Goiânia, Goiás, Brazil" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAXnsRcUa4yB4l77rtJL-gxNXEung1SfqKt8Tet_D7I847eU8shYBK5oyskgHyP9KpyionX-g-Rl2g_jg2QOoxVx8d_Ae0J1eZz5bqBmcx32rKuDcMx0vpGHk-a35DqvSNBKk-IO4NXZ-gaxBCjitsqQkTcajlAslUxZhIboxEtBGAD1lqug0ZVJbOoDG4f8gkG0jyhh1BChZ55_fgRFDIRKfKLGovD049pcDRuGwYjxrAv0OkolsBf')">
+<!-- Scrim Overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/80 via-inverse-surface/30 to-transparent pointer-events-none"></div>
+<div class="relative z-10 flex items-center justify-between text-on-tertiary">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary-fixed">my_location</span>
+<span class="font-data-mono text-[12px] font-semibold tracking-wide">Setor Bueno • T-63</span>
+</div>
+<span class="font-label-sm text-[10px] bg-surface-sidebar/70 backdrop-blur-sm px-2 py-0.5 rounded text-surface-container-high">Rota Operacional A-3</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-md bg-surface-container-low rounded-lg p-3 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-status-registered text-[18px]">verified</span>
+<span class="font-label-md text-label-md text-on-surface">Setor homologado</span>
+</div>
+<span class="font-data-mono text-data-mono text-status-registered-text font-bold">Taxa Normal</span>
+</div>
+</div>
+<!-- Queue Health & Operational Capacity Card -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">speed</span>
+              Capacidade da Fila
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Disponibilidade de atendimento para Goiânia nesta semana:</p>
+<!-- Inline SVG Sparkline / Capacity Visualizer -->
+<div class="flex flex-col gap-2 mb-space-md">
+<div class="flex justify-between items-center font-label-sm text-label-sm">
+<span class="text-on-surface">Vagas disponíveis hoje</span>
+<span class="text-status-active font-data-mono font-bold">18 de 45</span>
+</div>
+<div class="w-full h-2.5 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-status-active rounded-full" style="width: 60%;"></div>
+</div>
+<span class="font-data-mono text-[11px] text-outline text-right">Tempo médio de cadastro: 4.2 horas</span>
+</div>
+<div class="bg-surface-canvas rounded-lg p-space-md">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">info</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Regra de Transição Automática</span>
+<p class="font-body-sm text-[12px] text-on-surface-variant mt-0.5 leading-snug">
+                    Ao salvar, o agendamento entrará imediatamente como <span class="font-semibold text-status-pending-text">Pendente</span> e receberá notificação push para a equipe de vistoria.
+                  </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Regulatory Checklist -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm">
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-space-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-status-registered text-[18px]">rule</span>
+              Checklist de Validação
+            </h4>
+<ul class="flex flex-col gap-2 font-body-sm text-body-sm text-on-surface-variant">
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-status-registered text-[16px]">check_circle</span>
+<span>Nome completo sem abreviações</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-status-registered text-[16px]">check_circle</span>
+<span>DDD (62) validado geograficamente</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-status-pending text-[16px]">schedule</span>
+<span>Aguardando confirmação de duplicidade</span>
+</li>
+</ul>
+</div>
+</div>
+</form>
+</div>
+</div>
+<!-- Sticky Bottom Floating Action Bar -->
+<div class="fixed bottom-0 left-0 right-0 z-40 bg-surface-card/95 backdrop-blur-md shadow-2xl py-3 px-margin md:px-margin-desktop">
+<div class="max-w-7xl mx-auto flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<button class="h-9 px-space-md rounded bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1.5" onclick="openUnsavedModal()" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+<span>Cancelar</span>
+</button>
+<span class="hidden md:inline font-body-sm text-[12px] text-outline">
+          * Campos com asterisco são de preenchimento obrigatório para auditoria
+        </span>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="h-9 px-space-md rounded bg-surface-card hover:bg-surface-canvas text-on-surface font-label-md text-label-md transition-all shadow-sm flex items-center gap-1.5" onclick="saveDraft()" type="button">
+<span class="material-symbols-outlined text-[17px]">drafts</span>
+<span class="hidden sm:inline">Salvar como</span> Rascunho
+        </button>
+<button class="h-9 px-space-xl rounded bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md font-semibold transition-all shadow flex items-center gap-2" id="btn-salvar" onclick="triggerSaveForm()" type="button">
+<span class="material-symbols-outlined text-[18px]">check</span>
+<span>Salvar Solicitação</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Modal: Unsaved Changes Dialog (Overlay Level 3) -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/50 backdrop-blur-sm hidden flex items-center justify-center p-4" id="unsaved-modal">
+<div class="bg-surface-card rounded-xl max-w-md w-full p-space-lg shadow-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
+<div class="flex items-start gap-space-md mb-space-md">
+<div class="w-10 h-10 rounded-full bg-feedback-error-bg text-feedback-error flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">priority_high</span>
+</div>
+<div class="flex flex-col">
+<h3 class="font-headline-md text-headline-md text-on-surface">Descartar alterações?</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Existem dados preenchidos no formulário da solicitação. Se você sair agora, todas as informações não salvas serão perdidas.</p>
+</div>
+</div>
+<div class="flex items-center justify-end gap-space-sm mt-space-md">
+<button class="h-9 px-space-md rounded bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors" onclick="closeUnsavedModal()" type="button">
+          Continuar Editando
+        </button>
+<a class="h-9 px-space-md rounded bg-feedback-error text-on-error font-label-md text-label-md hover:bg-feedback-error-text transition-colors flex items-center justify-center font-semibold" data-path="solicitacoes" href="#">
+          Descartar e Sair
+        </a>
+</div>
+</div>
+</div>
+<!-- Modal / Drawer: Inspector of Existing Duplicate Record (RN-08) -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/50 backdrop-blur-sm hidden flex items-center justify-center p-4" id="duplicate-inspector-modal">
+<div class="bg-surface-card rounded-xl max-w-xl w-full p-space-lg shadow-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
+<div class="flex items-center justify-between pb-space-md mb-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-feedback-warning-bg text-feedback-warning-text flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">content_copy</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Comparativo de Duplicidade Preventiva</h3>
+<span class="font-data-mono text-[11px] text-outline">Registro Homólogo #2026-0894</span>
+</div>
+</div>
+<button class="p-1 rounded text-outline hover:text-on-surface hover:bg-surface-container transition-colors" onclick="closeDuplicateInspector()" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="bg-surface-container-low rounded-lg p-space-md mb-space-md">
+<div class="grid grid-cols-2 gap-space-md text-body-sm">
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-outline uppercase">Registro no Banco</span>
+<span class="font-semibold text-on-surface">Cláudia R. Vasconcelos</span>
+<span class="font-data-mono text-outline">(62) 98122-3344</span>
+<span class="text-on-surface-variant">Goiânia - Av. T-63</span>
+<span class="mt-1 inline-flex w-fit px-1.5 py-0.5 rounded text-[10px] font-label-sm uppercase bg-status-active-bg text-status-active-text">Cadastrado</span>
+</div>
+<div class="flex flex-col gap-1 bg-surface-card p-space-sm rounded shadow-inner">
+<span class="font-label-sm text-primary uppercase">Em Preenchimento</span>
+<span class="font-semibold text-on-surface">Cláudia Regina de Vasconcelos</span>
+<span class="font-data-mono text-feedback-warning-text font-bold">(62) 98122-3344</span>
+<span class="text-on-surface-variant">Goiânia - Av. T-63, QD 15 LT 02</span>
+<span class="mt-1 inline-flex w-fit px-1.5 py-0.5 rounded text-[10px] font-label-sm uppercase bg-status-pending-bg text-status-pending-text">Pendente (Novo)</span>
+</div>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-lg">
+        Recomenda-se unificar ou vincular um aditivo em vez de criar um novo ticket na fila operacional. Deseja manter o preenchimento ou migrar para o registro ativo?
+      </p>
+<div class="flex items-center justify-end gap-space-sm">
+<button class="h-9 px-space-md rounded bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors" onclick="closeDuplicateInspector()" type="button">
+          Manter Este Formulário
+        </button>
+<button class="h-9 px-space-md rounded bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary transition-all flex items-center gap-1.5 font-semibold" onclick="alert('Redirecionando para o registro #2026-0894'); closeDuplicateInspector();" type="button">
+<span class="material-symbols-outlined text-[17px]">open_in_new</span>
+<span>Abrir Registro Existente</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Interactive Logic -->
+<script>
+    function updateCharCount(el) {
+      const counter = document.getElementById('char-counter');
+      if (counter) {
+        counter.textContent = el.value.length + ' / 500 caracteres';
+      }
+    }
+
+    function dismissDuplicateBanner() {
+      const banner = document.getElementById('duplicate-warning-banner');
+      if (banner) {
+        banner.style.opacity = '0';
+        banner.style.transform = 'translateY(-8px)';
+        setTimeout(() => {
+          banner.style.display = 'none';
+        }, 300);
+      }
+    }
+
+    function openUnsavedModal() {
+      const modal = document.getElementById('unsaved-modal');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeUnsavedModal() {
+      const modal = document.getElementById('unsaved-modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function openDuplicateInspector() {
+      const modal = document.getElementById('duplicate-inspector-modal');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeDuplicateInspector() {
+      const modal = document.getElementById('duplicate-inspector-modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function triggerSaveForm() {
+      const form = document.getElementById('solicitacao-form');
+      if (form) {
+        if (!form.checkValidity()) {
+          form.reportValidity();
+        } else {
+          const btn = document.getElementById('btn-salvar');
+          btn.disabled = true;
+          btn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[18px]">progress_activity</span><span>Gravando...</span>';
+          setTimeout(() => {
+            btn.innerHTML = '<span class="material-symbols-outlined text-[18px]">check_circle</span><span>Sucesso!</span>';
+            btn.classList.remove('bg-primary-container', 'hover:bg-primary');
+            btn.classList.add('bg-status-registered', 'text-on-primary');
+            setTimeout(() => {
+              alert('Solicitação protocolada com sucesso com status Pendente na fila operacional.');
+              window.location.hash = '#solicitacoes';
+            }, 500);
+          }, 900);
+        }
+      }
+    }
+
+    function saveDraft() {
+      alert('Rascunho gravado localmente no cache do operador!');
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      triggerSaveForm();
+    }
+  </script>
+</div></main></body></html>

@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "status-active-text": "#0369A1",
+          "feedback-error-text": "#991B1B",
+          "tertiary-fixed": "#ffdcc3",
+          "status-registered-text": "#065F46",
+          "primary-container": "#1e3a8a",
+          "status-pending-bg": "#FEF3C7",
+          "error-container": "#ffdad6",
+          "on-surface-variant": "#444651",
+          "status-archived-bg": "#F1F5F9",
+          "on-tertiary": "#ffffff",
+          "on-secondary-fixed-variant": "#005049",
+          "tertiary-container": "#653400",
+          "inverse-surface": "#213145",
+          "secondary-container": "#86f2e4",
+          "status-pending-text": "#92400E",
+          "surface-canvas": "#F8FAFC",
+          "on-tertiary-fixed-variant": "#6e3900",
+          "on-background": "#0b1c30",
+          "status-inactive": "#94A3B8",
+          "secondary-fixed-dim": "#6bd8cb",
+          "tertiary-fixed-dim": "#ffb77d",
+          "inverse-on-surface": "#eaf1ff",
+          "surface-container-high": "#dce9ff",
+          "status-registered": "#059669",
+          "feedback-error-bg": "#FEE2E2",
+          "background": "#f8f9ff",
+          "on-tertiary-fixed": "#2f1500",
+          "feedback-error": "#DC2626",
+          "secondary": "#006a61",
+          "feedback-warning-text": "#9A3412",
+          "surface-container-low": "#eff4ff",
+          "on-primary-fixed": "#00164e",
+          "border-subtle": "#E2E8F0",
+          "status-inactive-bg": "#F8FAFC",
+          "secondary-fixed": "#89f5e7",
+          "status-archived-text": "#334155",
+          "on-surface": "#0b1c30",
+          "surface-dim": "#cbdbf5",
+          "surface": "#f8f9ff",
+          "primary-fixed-dim": "#b6c4ff",
+          "on-error": "#ffffff",
+          "on-tertiary-container": "#fc922b",
+          "tertiary": "#442100",
+          "on-primary-container": "#90a8ff",
+          "surface-variant": "#d3e4fe",
+          "status-active": "#0284C7",
+          "on-secondary": "#ffffff",
+          "feedback-warning-bg": "#FFEDD5",
+          "on-secondary-container": "#006f66",
+          "border-strong": "#CBD5E1",
+          "status-active-bg": "#E0F2FE",
+          "surface-container-highest": "#d3e4fe",
+          "on-error-container": "#93000a",
+          "error": "#ba1a1a",
+          "status-archived": "#475569",
+          "surface-bright": "#f8f9ff",
+          "surface-container-lowest": "#ffffff",
+          "status-inactive-text": "#64748B",
+          "on-primary": "#ffffff",
+          "primary-fixed": "#dce1ff",
+          "surface-tint": "#4059aa",
+          "outline": "#757682",
+          "surface-container": "#e5eeff",
+          "surface-sidebar": "#0F172A",
+          "on-primary-fixed-variant": "#264191",
+          "feedback-warning": "#EA580C",
+          "primary": "#00236f",
+          "on-secondary-fixed": "#00201d",
+          "outline-variant": "#c5c5d3",
+          "surface-card": "#FFFFFF",
+          "status-pending": "#D97706",
+          "inverse-primary": "#b6c4ff",
+          "status-registered-bg": "#D1FAE5"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        "spacing": {
+          "space-md": "0.75rem",
+          "space-2xl": "2.5rem",
+          "margin": "1rem",
+          "space-xl": "1.75rem",
+          "margin-desktop": "2rem",
+          "space-xs": "0.25rem",
+          "gutter": "1rem",
+          "space-sm": "0.5rem",
+          "space-lg": "1.25rem",
+          "gutter-desktop": "1.5rem"
+        },
+        "fontFamily": {
+          "body-sm": [
+            "Inter"
+          ],
+          "headline-sm": [
+            "Inter"
+          ],
+          "body-lg": [
+            "Inter"
+          ],
+          "headline-md": [
+            "Inter"
+          ],
+          "label-md": [
+            "Inter"
+          ],
+          "data-mono": [
+            "Inter"
+          ],
+          "display-lg": [
+            "Inter"
+          ],
+          "label-sm": [
+            "Inter"
+          ],
+          "headline-lg": [
+            "Inter"
+          ],
+          "body-md": [
+            "Inter"
+          ]
+        },
+        "fontSize": {
+          "body-sm": [
+            "13px",
+            {
+              "lineHeight": "18px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-sm": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "letterSpacing": "-0.005em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-lg": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-md": [
+            "20px",
+            {
+              "lineHeight": "28px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ],
+          "label-md": [
+            "13px",
+            {
+              "lineHeight": "18px",
+              "fontWeight": "500"
+            }
+          ],
+          "data-mono": [
+            "13px",
+            {
+              "lineHeight": "18px",
+              "fontWeight": "500"
+            }
+          ],
+          "display-lg": [
+            "30px",
+            {
+              "lineHeight": "38px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "700"
+            }
+          ],
+          "label-sm": [
+            "11px",
+            {
+              "lineHeight": "16px",
+              "letterSpacing": "0.02em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-lg": [
+            "24px",
+            {
+              "lineHeight": "32px",
+              "letterSpacing": "-0.015em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "400"
+            }
+          ]
+        }
+      },
+    },
+  }</script></head><body class="bg-surface-canvas font-body-md text-on-surface antialiased selection:bg-primary selection:text-on-primary"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-card shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 w-full px-margin-desktop flex items-center justify-between"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-md"><img alt="Logo Sistema de Agendamento" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VHjf6Eevh7SMXlsSz3zYvXZu8TTP6sheYdu3M9kqk90ttDqZLX8_lgSBaCAXPmO9uiMHUpMEBfHazMDzmP8YitKxu3XFFPZtPx9nojBXFBVEWf4zBEVRnkMCoZq9ER9Qrisdt8CY7qOlkvmAwC7tcEoJCEmyuOE8G373ozoNRA_LJSXDNl_BVvy7UGSIM2m2qDMdNO_BbxynH-sx0u3u9LXFoL2D2ACLccrXVShOoS0n3ojoomD2aCTOM"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight leading-none">Sistema de Agendamento</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-0.5">Operações &amp; Registro</span></div></div><div class="h-6 w-[1px] bg-border-subtle hidden md:block"></div><nav class="hidden md:flex items-center gap-space-xs" data-active-classes="bg-surface-container text-primary font-label-md rounded-lg"><a class="px-space-md py-space-sm rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="solicitacoes" href="#">Solicitações</a><a class="flex items-center gap-space-xs px-space-md py-space-sm rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="usuarios" href="#"><span>Usuários</span><span class="px-1.5 py-0.5 rounded font-label-sm text-[10px] uppercase tracking-wider bg-surface-container text-on-surface-variant border border-border-subtle">Admin</span></a><a class="px-space-md py-space-sm rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="historico-de-auditoria" href="#">Histórico</a></nav></div><div class="flex items-center gap-space-md"><div class="hidden sm:flex items-center gap-space-sm bg-surface-container-lowest px-space-md py-1.5 rounded-lg border border-border-subtle"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKDvwa5wZTs_a425999Az-7ggW2ZP0Qh2Fy79HrXlH6czN-L2wQpG0ANlS-HHkO1D-OkFZBSYEUXtA4VITTx410ImREL5zQOWnNmsn_aze12SejScYcRBsclXaLg1btMsC2lgU8W4EUM84MbpCKCtZKHpur2DkogkARXjWB2vzNGeow2xidOCnf-x0CtsQaMVNCh4rbk8f8YhyUJBDjKOFOEl4P3SgA8KAUhxhtDTm1y50f1GssgDJ"/><div class="flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface font-semibold leading-tight">Mariana Silva</span><div class="flex items-center gap-1 mt-0.5"><span class="inline-flex items-center px-1.5 py-0.2 rounded font-label-sm text-label-sm bg-status-active-bg text-status-active-text">Administrador</span></div></div></div><a class="flex items-center gap-space-xs px-space-md py-space-sm rounded-lg font-label-md text-label-md text-feedback-error hover:bg-feedback-error-bg hover:text-feedback-error-text transition-colors" data-path="login" href="#" title="Encerrar sessão"><span class="material-symbols-outlined text-[18px]">logout</span><span class="hidden sm:inline">Sair</span></a></div></div></header><main class="w-full pt-16 bg-surface-canvas min-h-screen"><div class="flex flex-col w-full">
+<!-- Toast Notification Bar (Simulated / dismissible) -->
+<div class="w-full bg-status-active-bg px-margin-desktop py-space-sm flex items-center justify-between shadow-sm" id="concurrency-toast">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-status-active text-[18px]">verified_user</span>
+<span class="font-body-sm text-body-sm text-status-active-text font-medium">Registro verificado e sincronizado em tempo real. Versão atual v3.</span>
+</div>
+<button class="text-status-active-text hover:text-on-surface p-1 rounded transition-colors" onclick="document.getElementById('concurrency-toast').remove()" title="Fechar aviso">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<div class="w-full px-margin md:px-margin-desktop py-space-xl flex flex-col gap-space-xl max-w-7xl mx-auto">
+<!-- Breadcrumb & Quick Action Row -->
+<div class="flex flex-wrap items-center justify-between gap-space-md">
+<nav class="flex items-center gap-space-xs text-on-surface-variant">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1" data-path="solicitacoes" href="#">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+<span>Voltar para a Fila</span>
+</a>
+<span class="font-body-sm text-body-sm text-on-surface-variant opacity-40">/</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Solicitações</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant opacity-40">/</span>
+<span class="font-data-mono text-data-mono font-semibold text-primary">#AG-10488</span>
+</nav>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant bg-surface-container-high px-2 py-0.5 rounded">Fila Operacional</span>
+<span class="font-data-mono text-data-mono text-on-surface-variant text-[12px] opacity-75">SLA: 18h restantes</span>
+</div>
+</div>
+<!-- Main Header Card -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg relative overflow-hidden">
+<div class="flex items-start md:items-center gap-space-md">
+<div class="w-14 h-14 rounded-xl bg-surface-container flex items-center justify-center text-primary font-headline-lg shrink-0 shadow-inner">
+<span class="material-symbols-outlined text-[32px]">person</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex flex-wrap items-center gap-space-sm">
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">Carlos Eduardo Silveira</h1>
+<span class="font-data-mono text-data-mono font-semibold px-2 py-0.5 rounded bg-surface-container text-primary text-[13px]">#AG-10488</span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded font-label-sm text-label-sm bg-status-pending-bg text-status-pending-text uppercase tracking-wider font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-status-pending animate-pulse"></span>
+              Pendente
+            </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Solicitação aberta via portal operacional para triagem de atendimento presencial prioritário.</p>
+</div>
+</div>
+<!-- Action Buttons Condicionais por Perfil -->
+<div class="flex flex-wrap items-center gap-space-sm self-end lg:self-center">
+<!-- Edit Action (Agendador/Admin) -->
+<button class="h-9 px-3.5 rounded bg-surface-container-lowest hover:bg-surface-container-low text-on-surface-variant font-label-md text-label-md flex items-center gap-1.5 shadow-sm transition-colors cursor-pointer" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+<span>Editar Dados</span>
+</button>
+<!-- Primary State Mutation (Cadastrador/Admin) -->
+<button class="h-9 px-4 rounded bg-status-registered hover:opacity-95 text-on-primary font-label-md text-label-md font-semibold flex items-center gap-1.5 shadow-sm transition-opacity cursor-pointer" id="btn-open-confirm" type="button">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span>Marcar como Cadastrado</span>
+</button>
+<!-- Context Menu / Administrative Danger Zone -->
+<button class="h-9 px-3 rounded bg-surface-container-low hover:bg-feedback-error-bg text-on-surface-variant hover:text-feedback-error-text font-label-md text-label-md flex items-center gap-1 transition-colors cursor-pointer" id="btn-open-archive" title="Arquivar este registro" type="button">
+<span class="material-symbols-outlined text-[18px]">archive</span>
+<span class="hidden sm:inline">Arquivar</span>
+</button>
+</div>
+</div>
+<!-- Navigation Tabs -->
+<div class="flex items-center gap-space-md bg-surface-container-lowest px-space-md py-1.5 rounded-xl shadow-sm overflow-x-auto">
+<button class="flex items-center gap-2 px-space-md py-2 rounded-lg font-label-md text-label-md text-on-primary bg-primary shadow-sm transition-all cursor-pointer" id="tab-btn-details" onclick="switchTab('details')">
+<span class="material-symbols-outlined text-[18px]">description</span>
+<span>Dados da Solicitação</span>
+</button>
+<button class="flex items-center gap-2 px-space-md py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-all cursor-pointer" id="tab-btn-audit" onclick="switchTab('audit')">
+<span class="material-symbols-outlined text-[18px]">manage_history</span>
+<span>Histórico de Alterações</span>
+<span class="px-1.5 py-0.2 rounded-full font-label-sm text-label-sm bg-surface-container-high text-on-surface-variant font-bold">4</span>
+</button>
+</div>
+<!-- TAB CONTENT 1: Dados da Solicitação -->
+<div class="flex flex-col gap-space-xl" id="tab-panel-details">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Main Form Details (Col 8) -->
+<div class="lg:col-span-8 flex flex-col gap-space-lg">
+<!-- Card 1: Solicitante e Contato -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">badge</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Dados do Solicitante e Contato</h2>
+</div>
+<span class="font-label-sm text-label-sm text-status-active-text bg-status-active-bg px-2 py-0.5 rounded font-semibold">Validado RFB</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md pt-space-xs">
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Nome Completo</span>
+<span class="font-body-md text-body-md font-semibold text-on-surface mt-1">Carlos Eduardo Silveira</span>
+<span class="font-data-mono text-data-mono text-[12px] text-on-surface-variant mt-0.5">CPF: 382.***.***-04</span>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Data de Abertura</span>
+<span class="font-data-mono text-data-mono font-semibold text-on-surface mt-1">14/10/2026 às 09:30</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Canal: Agendamento Presencial</span>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Telefone Principal</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">call</span>
+<span class="font-data-mono text-data-mono font-semibold text-on-surface">(62) 98412-3301</span>
+</div>
+<span class="font-label-sm text-label-sm text-status-registered-text mt-0.5 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-registered"></span> Linha confirmada
+                </span>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">WhatsApp / Recado</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-secondary text-[16px]">chat</span>
+<span class="font-data-mono text-data-mono font-semibold text-on-surface">(62) 99104-8820</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Contato do cônjuge</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Endereço do Agendamento -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">location_on</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Endereço do Agendamento / Imóvel</h2>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container px-2 py-0.5 rounded">Zona Sul</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md pt-space-xs">
+<div class="md:col-span-2 bg-surface-container-low p-space-md rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Logradouro / Rua</span>
+<span class="font-body-md text-body-md font-semibold text-on-surface mt-1">Av. T-63, nº 420</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Edifício Metropolitan Workstyle, Torre Office</span>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Quadra &amp; Lote</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-data-mono text-data-mono font-semibold text-on-surface">QD 14</span>
+<span class="text-on-surface-variant opacity-40">/</span>
+<span class="font-data-mono text-data-mono font-semibold text-on-surface">LT 08</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Setor Cadastral 24</span>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Bairro / Setor</span>
+<span class="font-body-md text-body-md font-semibold text-on-surface mt-1">Setor Bueno</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Região Urbana Central</span>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Cidade / UF</span>
+<span class="font-body-md text-body-md font-semibold text-on-surface mt-1">Goiânia - GO</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Comarca de Goiânia</span>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">CEP</span>
+<span class="font-data-mono text-data-mono font-semibold text-on-surface mt-1">74230-100</span>
+<span class="font-label-sm text-label-sm text-status-registered-text mt-0.5">Geocodificado OK</span>
+</div>
+</div>
+<!-- Mini Map Component (Data attribute map per prompt instructions) -->
+<div class="w-full h-44 rounded-lg bg-cover bg-center overflow-hidden relative shadow-inner mt-space-xs" data-location="Av. T-63, 420, Setor Bueno, Goiânia - GO" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBonL2FcDPLKB7psFw8HlpWqEUG8GwIby3-roiz2KDEsuWuh454DflTnTpszsmnNg_hXVAFr_QzTdqULiJOK95AIAxjaRXItwqi78kE_Fedabu-BBtwfZfDt44tx5DY2VBMH68hPzdyAtDzMAuAybdh3-Y_-dXAb9V5DZ66pDApPp2D0-q2fZ9ufQucADVsIzNvRoMG1BEOZBq58QvkpJEL4OrSIViUJ2QVuLVLdT5owwvcHwVZ-KHH')">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-sidebar/70 via-transparent to-transparent flex items-end p-space-md">
+<div class="flex items-center gap-2 text-white text-body-sm font-medium">
+<span class="material-symbols-outlined text-[18px] text-feedback-warning">pin_drop</span>
+<span>Goiânia, Setor Bueno - Ponto de atendimento confirmado via GPS</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3: Observações Operacionais -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-feedback-warning text-[20px]">sticky_note_2</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Observações Operacionais</h2>
+</div>
+<span class="font-label-sm text-label-sm text-feedback-warning-text bg-feedback-warning-bg px-2 py-0.5 rounded font-semibold">Atenção Necessária</span>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col gap-space-xs">
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+                "Solicitação prioritária para atendimento matutino. Documentação anexada no processo físico nº 2026/882-C. O solicitante informou portar procuração específica para retificação cadastral de certidão de matrícula com reserva de usufruto."
+              </p>
+<div class="flex items-center gap-space-xs pt-space-xs text-on-surface-variant font-body-sm text-[12px]">
+<span class="material-symbols-outlined text-[14px]">edit_note</span>
+<span>Registrado por <strong>Mariana Silva</strong> durante triagem inicial às 09:34.</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Sidebar Metadata & Traceability (Col 4) -->
+<div class="lg:col-span-4 flex flex-col gap-space-lg">
+<!-- Card Metadados -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">analytics</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Rastreabilidade</h2>
+</div>
+<span class="font-data-mono text-data-mono font-bold px-2 py-0.5 rounded bg-surface-container text-primary">v3.0</span>
+</div>
+<!-- Metadados em lista estruturada -->
+<div class="flex flex-col gap-space-sm">
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Criado em</span>
+<span class="font-data-mono text-data-mono text-on-surface font-semibold">14/10/2026 às 09:30</span>
+<div class="flex items-center gap-1.5 mt-1 text-on-surface-variant font-body-sm text-[12px]">
+<span class="material-symbols-outlined text-[14px]">person_add</span>
+<span>Mariana Silva (Agendador)</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Última Modificação</span>
+<span class="font-data-mono text-data-mono text-on-surface font-semibold">14/10/2026 às 14:15</span>
+<div class="flex items-center gap-1.5 mt-1 text-on-surface-variant font-body-sm text-[12px]">
+<span class="material-symbols-outlined text-[14px]">edit_calendar</span>
+<span>Carlos Lima (Administrador)</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Ambiente de Execução</span>
+<div class="flex items-center justify-between mt-1">
+<span class="font-data-mono text-data-mono text-on-surface text-[12px]">IP: 192.168.10.42</span>
+<span class="font-label-sm text-label-sm text-status-active-text bg-status-active-bg px-1.5 py-0.2 rounded font-semibold">Rede Local</span>
+</div>
+</div>
+</div>
+<!-- Health Progress / Completeness Gauge -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg flex flex-col gap-space-xs mt-space-xs">
+<div class="flex justify-between items-center text-body-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Conformidade Cadastral</span>
+<span class="font-data-mono text-data-mono font-bold text-primary">85%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 85%"></div>
+</div>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Falta apenas a validação da certidão de inteiro teor.</span>
+</div>
+</div>
+<!-- Quick Action Card: Guia de Procedimento -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[20px]">assignment_turned_in</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Instruções para o Cadastrador</h3>
+</div>
+<ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-on-surface-variant">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-status-registered text-[16px] shrink-0 mt-0.5">check</span>
+<span>Conferir documento com foto original apresentado.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-status-registered text-[16px] shrink-0 mt-0.5">check</span>
+<span>Verificar confrontações da Quadra 14 e Lote 08.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-status-pending text-[16px] shrink-0 mt-0.5">pending</span>
+<span>Acionar o botão <strong>"Marcar como Cadastrado"</strong> para arquivar a demanda na fila definitiva.</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- TAB CONTENT 2: Histórico de Auditoria (Admin View) -->
+<div class="hidden flex-col gap-space-lg" id="tab-panel-audit">
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col gap-space-lg">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pb-space-sm">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold">Trilha Completa de Auditoria</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Registro cronológico de todas as mutações e acessos computados pelo sistema.</p>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant bg-surface-container px-2 py-1 rounded">Modo Administrador</span>
+<button class="px-space-md py-1.5 rounded bg-surface-container-lowest hover:bg-surface-container text-on-surface-variant font-label-md text-label-md flex items-center gap-1 shadow-sm transition-colors">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+<span>Exportar Log</span>
+</button>
+</div>
+</div>
+<!-- Timeline Graphic Component -->
+<div class="relative pl-6 sm:pl-8 flex flex-col gap-space-lg">
+<!-- Continuous Timeline Bar -->
+<div class="absolute left-2.5 sm:left-3.5 top-3 bottom-3 w-0.5 bg-surface-container-high"></div>
+<!-- Timeline Event 1: Recent Phone Modification -->
+<div class="relative flex flex-col sm:flex-row sm:items-start justify-between gap-space-md bg-surface-container-low p-space-md rounded-lg">
+<div class="absolute -left-6 sm:-left-8 top-4 w-7 h-7 rounded-full bg-surface-card flex items-center justify-center shadow-sm">
+<span class="w-3 h-3 rounded-full bg-status-active"></span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="font-label-sm text-label-sm text-status-active-text bg-status-active-bg px-2 py-0.5 rounded font-semibold uppercase">Modificação de Campo</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Edição de telefone de contato secundário</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                O telefone de recado foi atualizado de <code class="font-data-mono text-[12px] bg-surface-card px-1 py-0.5 rounded text-feedback-error-text line-through">(62) 98000-0000</code> para <code class="font-data-mono text-[12px] bg-surface-card px-1 py-0.5 rounded text-status-registered-text font-bold">(62) 99104-8820</code>.
+              </p>
+<div class="flex items-center gap-space-md text-on-surface-variant font-body-sm text-[12px] mt-1">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">account_circle</span>
+<strong>Carlos Lima</strong> (Administrador)
+                </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                  14/10/2026 às 14:15:32
+                </span>
+</div>
+</div>
+<span class="font-data-mono text-data-mono text-[11px] text-on-surface-variant shrink-0 bg-surface-card px-2 py-1 rounded">Hash: #a9f02c</span>
+</div>
+<!-- Timeline Event 2: Status Check -->
+<div class="relative flex flex-col sm:flex-row sm:items-start justify-between gap-space-md bg-surface-container-low p-space-md rounded-lg">
+<div class="absolute -left-6 sm:-left-8 top-4 w-7 h-7 rounded-full bg-surface-card flex items-center justify-center shadow-sm">
+<span class="w-3 h-3 rounded-full bg-status-pending"></span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="font-label-sm text-label-sm text-status-pending-text bg-status-pending-bg px-2 py-0.5 rounded font-semibold uppercase">Consulta de Endereço</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Validação cadastral geográfica executada</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Verificação de viabilidade territorial Setor Bueno / QD 14 realizada com êxito sem sobreposições detectadas na base municipal.
+              </p>
+<div class="flex items-center gap-space-md text-on-surface-variant font-body-sm text-[12px] mt-1">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">account_circle</span>
+<strong>Mariana Silva</strong> (Agendador)
+                </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                  14/10/2026 às 09:35:10
+                </span>
+</div>
+</div>
+<span class="font-data-mono text-data-mono text-[11px] text-on-surface-variant shrink-0 bg-surface-card px-2 py-1 rounded">Hash: #8e11bb</span>
+</div>
+<!-- Timeline Event 3: Creation -->
+<div class="relative flex flex-col sm:flex-row sm:items-start justify-between gap-space-md bg-surface-container-low p-space-md rounded-lg">
+<div class="absolute -left-6 sm:-left-8 top-4 w-7 h-7 rounded-full bg-surface-card flex items-center justify-center shadow-sm">
+<span class="w-3 h-3 rounded-full bg-status-registered"></span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="font-label-sm text-label-sm text-status-registered-text bg-status-registered-bg px-2 py-0.5 rounded font-semibold uppercase">Criação do Registro</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Criação da solicitação com status inicial Pendente</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Inserção de formulário com dados de contato, documento CPF e anotação operacional inicial. Protocolo público atribuído: #AG-10488.
+              </p>
+<div class="flex items-center gap-space-md text-on-surface-variant font-body-sm text-[12px] mt-1">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">account_circle</span>
+<strong>Mariana Silva</strong> (Agendador)
+                </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                  14/10/2026 às 09:30:00
+                </span>
+</div>
+</div>
+<span class="font-data-mono text-data-mono text-[11px] text-on-surface-variant shrink-0 bg-surface-card px-2 py-1 rounded">Hash: #01ff94</span>
+</div>
+<!-- Timeline Event 4: Log Inicial -->
+<div class="relative flex flex-col sm:flex-row sm:items-start justify-between gap-space-md bg-surface-container-low p-space-md rounded-lg">
+<div class="absolute -left-6 sm:-left-8 top-4 w-7 h-7 rounded-full bg-surface-card flex items-center justify-center shadow-sm">
+<span class="w-3 h-3 rounded-full bg-on-surface-variant"></span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container px-2 py-0.5 rounded font-semibold uppercase">Sistema</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Geração de Ticket e Chave Criptográfica</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Alocação no pool de concorrência e chave primária indexada para replicação segura de dados sem colisão.
+              </p>
+<div class="flex items-center gap-space-md text-on-surface-variant font-body-sm text-[12px] mt-1">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">terminal</span>
+<strong>Daemon do Sistema</strong>
+</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                  14/10/2026 às 09:29:58
+                </span>
+</div>
+</div>
+<span class="font-data-mono text-data-mono text-[11px] text-on-surface-variant shrink-0 bg-surface-card px-2 py-1 rounded">Hash: #0001aa</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- MODAL 1: Confirmação de Cadastro ("Marcar como Cadastrado") -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-margin bg-inverse-surface/40 backdrop-blur-sm hidden transition-opacity" id="modal-confirm">
+<div class="bg-surface-card rounded-xl max-w-md w-full p-space-lg shadow-xl flex flex-col gap-space-md transform transition-all">
+<div class="w-12 h-12 rounded-full bg-status-registered-bg text-status-registered flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">verified</span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">Confirmar Cadastro Definitivo</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Você está prestes a transicionar o status da solicitação <strong class="font-data-mono text-primary font-semibold">#AG-10488</strong> de 
+          <span class="px-1.5 py-0.5 rounded text-[11px] font-semibold bg-status-pending-bg text-status-pending-text">PENDENTE</span> para 
+          <span class="px-1.5 py-0.5 rounded text-[11px] font-semibold bg-status-registered-bg text-status-registered-text">CADASTRADO</span>.
+        </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+          Esta ação notificará o requerente e inserirá uma entrada de auditoria vinculada à sua matrícula de operador.
+        </p>
+</div>
+<div class="flex items-center justify-end gap-space-sm pt-space-sm">
+<button class="h-9 px-4 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md transition-colors cursor-pointer" id="btn-cancel-confirm" type="button">
+          Cancelar
+        </button>
+<button class="h-9 px-4 rounded bg-status-registered hover:opacity-90 text-on-primary font-label-md text-label-md font-semibold flex items-center gap-1.5 shadow-sm transition-opacity cursor-pointer" id="btn-execute-confirm" type="button">
+<span class="material-symbols-outlined text-[18px]">check</span>
+<span>Sim, Marcar como Cadastrado</span>
+</button>
+</div>
+</div>
+</div>
+<!-- MODAL 2: Confirmação de Arquivamento (Ação Crítica) -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-margin bg-inverse-surface/40 backdrop-blur-sm hidden transition-opacity" id="modal-archive">
+<div class="bg-surface-card rounded-xl max-w-md w-full p-space-lg shadow-xl flex flex-col gap-space-md">
+<div class="w-12 h-12 rounded-full bg-feedback-error-bg text-feedback-error flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">warning</span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">Arquivar Registro?</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          O registro <strong class="font-data-mono text-primary font-semibold">#AG-10488</strong> de Carlos Eduardo Silveira será movido para o arquivo inativo. Ele não aparecerá mais na fila operacional ativa.
+        </p>
+</div>
+<div class="flex items-center justify-end gap-space-sm pt-space-sm">
+<button class="h-9 px-4 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md transition-colors cursor-pointer" id="btn-cancel-archive" type="button">
+          Voltar
+        </button>
+<button class="h-9 px-4 rounded bg-feedback-error hover:opacity-90 text-on-primary font-label-md text-label-md font-semibold flex items-center gap-1.5 shadow-sm transition-opacity cursor-pointer" id="btn-execute-archive" type="button">
+<span class="material-symbols-outlined text-[18px]">archive</span>
+<span>Confirmar Arquivamento</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Interactive Logic for Tab Switching and Modals -->
+<script>
+    function switchTab(target) {
+      const detailsBtn = document.getElementById('tab-btn-details');
+      const auditBtn = document.getElementById('tab-btn-audit');
+      const detailsPanel = document.getElementById('tab-panel-details');
+      const auditPanel = document.getElementById('tab-panel-audit');
+
+      if (target === 'details') {
+        detailsPanel.classList.remove('hidden');
+        auditPanel.classList.add('hidden');
+
+        detailsBtn.className = "flex items-center gap-2 px-space-md py-2 rounded-lg font-label-md text-label-md text-on-primary bg-primary shadow-sm transition-all cursor-pointer";
+        auditBtn.className = "flex items-center gap-2 px-space-md py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-all cursor-pointer";
+      } else {
+        detailsPanel.classList.add('hidden');
+        auditPanel.classList.remove('hidden');
+        auditPanel.classList.add('flex');
+
+        auditBtn.className = "flex items-center gap-2 px-space-md py-2 rounded-lg font-label-md text-label-md text-on-primary bg-primary shadow-sm transition-all cursor-pointer";
+        detailsBtn.className = "flex items-center gap-2 px-space-md py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-all cursor-pointer";
+      }
+    }
+
+    // Modal Control: Marcar como Cadastrado
+    const confirmModal = document.getElementById('modal-confirm');
+    const openConfirmBtn = document.getElementById('btn-open-confirm');
+    const cancelConfirmBtn = document.getElementById('btn-cancel-confirm');
+    const execConfirmBtn = document.getElementById('btn-execute-confirm');
+
+    if (openConfirmBtn) {
+      openConfirmBtn.addEventListener('click', () => confirmModal.classList.remove('hidden'));
+    }
+    if (cancelConfirmBtn) {
+      cancelConfirmBtn.addEventListener('click', () => confirmModal.classList.add('hidden'));
+    }
+    if (execConfirmBtn) {
+      execConfirmBtn.addEventListener('click', () => {
+        execConfirmBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">refresh</span> Processando...';
+        setTimeout(() => {
+          confirmModal.classList.add('hidden');
+          alert('Status atualizado para CADASTRADO com sucesso!');
+          location.reload();
+        }, 700);
+      });
+    }
+
+    // Modal Control: Arquivar
+    const archiveModal = document.getElementById('modal-archive');
+    const openArchiveBtn = document.getElementById('btn-open-archive');
+    const cancelArchiveBtn = document.getElementById('btn-cancel-archive');
+    const execArchiveBtn = document.getElementById('btn-execute-archive');
+
+    if (openArchiveBtn) {
+      openArchiveBtn.addEventListener('click', () => archiveModal.classList.remove('hidden'));
+    }
+    if (cancelArchiveBtn) {
+      cancelArchiveBtn.addEventListener('click', () => archiveModal.classList.add('hidden'));
+    }
+    if (execArchiveBtn) {
+      execArchiveBtn.addEventListener('click', () => {
+        archiveModal.classList.add('hidden');
+        alert('Registro #AG-10488 arquivado com sucesso.');
+      });
+    }
+  </script>
+</div></main></body></html>

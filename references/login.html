@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_blank" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "status-active-text": "#0369A1",
+          "feedback-error-text": "#991B1B",
+          "tertiary-fixed": "#ffdcc3",
+          "status-registered-text": "#065F46",
+          "primary-container": "#1e3a8a",
+          "status-pending-bg": "#FEF3C7",
+          "error-container": "#ffdad6",
+          "on-surface-variant": "#444651",
+          "status-archived-bg": "#F1F5F9",
+          "on-tertiary": "#ffffff",
+          "on-secondary-fixed-variant": "#005049",
+          "tertiary-container": "#653400",
+          "inverse-surface": "#213145",
+          "secondary-container": "#86f2e4",
+          "status-pending-text": "#92400E",
+          "surface-canvas": "#F8FAFC",
+          "on-tertiary-fixed-variant": "#6e3900",
+          "on-background": "#0b1c30",
+          "status-inactive": "#94A3B8",
+          "secondary-fixed-dim": "#6bd8cb",
+          "tertiary-fixed-dim": "#ffb77d",
+          "inverse-on-surface": "#eaf1ff",
+          "surface-container-high": "#dce9ff",
+          "status-registered": "#059669",
+          "feedback-error-bg": "#FEE2E2",
+          "background": "#f8f9ff",
+          "on-tertiary-fixed": "#2f1500",
+          "feedback-error": "#DC2626",
+          "secondary": "#006a61",
+          "feedback-warning-text": "#9A3412",
+          "surface-container-low": "#eff4ff",
+          "on-primary-fixed": "#00164e",
+          "border-subtle": "#E2E8F0",
+          "status-inactive-bg": "#F8FAFC",
+          "secondary-fixed": "#89f5e7",
+          "status-archived-text": "#334155",
+          "on-surface": "#0b1c30",
+          "surface-dim": "#cbdbf5",
+          "surface": "#f8f9ff",
+          "primary-fixed-dim": "#b6c4ff",
+          "on-error": "#ffffff",
+          "on-tertiary-container": "#fc922b",
+          "tertiary": "#442100",
+          "on-primary-container": "#90a8ff",
+          "surface-variant": "#d3e4fe",
+          "status-active": "#0284C7",
+          "on-secondary": "#ffffff",
+          "feedback-warning-bg": "#FFEDD5",
+          "on-secondary-container": "#006f66",
+          "border-strong": "#CBD5E1",
+          "status-active-bg": "#E0F2FE",
+          "surface-container-highest": "#d3e4fe",
+          "on-error-container": "#93000a",
+          "error": "#ba1a1a",
+          "status-archived": "#475569",
+          "surface-bright": "#f8f9ff",
+          "surface-container-lowest": "#ffffff",
+          "status-inactive-text": "#64748B",
+          "on-primary": "#ffffff",
+          "primary-fixed": "#dce1ff",
+          "surface-tint": "#4059aa",
+          "outline": "#757682",
+          "surface-container": "#e5eeff",
+          "surface-sidebar": "#0F172A",
+          "on-primary-fixed-variant": "#264191",
+          "feedback-warning": "#EA580C",
+          "primary": "#00236f",
+          "on-secondary-fixed": "#00201d",
+          "outline-variant": "#c5c5d3",
+          "surface-card": "#FFFFFF",
+          "status-pending": "#D97706",
+          "inverse-primary": "#b6c4ff",
+          "status-registered-bg": "#D1FAE5"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        "spacing": {
+          "space-md": "0.75rem",
+          "space-2xl": "2.5rem",
+          "margin": "1rem",
+          "space-xl": "1.75rem",
+          "margin-desktop": "2rem",
+          "space-xs": "0.25rem",
+          "gutter": "1rem",
+          "space-sm": "0.5rem",
+          "space-lg": "1.25rem",
+          "gutter-desktop": "1.5rem"
+        },
+        "fontFamily": {
+          "body-sm": [
+            "Inter"
+          ],
+          "headline-sm": [
+            "Inter"
+          ],
+          "body-lg": [
+            "Inter"
+          ],
+          "headline-md": [
+            "Inter"
+          ],
+          "label-md": [
+            "Inter"
+          ],
+          "data-mono": [
+            "Inter"
+          ],
+          "display-lg": [
+            "Inter"
+          ],
+          "label-sm": [
+            "Inter"
+          ],
+          "headline-lg": [
+            "Inter"
+          ],
+          "body-md": [
+            "Inter"
+          ]
+        },
+        "fontSize": {
+          "body-sm": [
+            "13px",
+            {
+              "lineHeight": "18px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-sm": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "letterSpacing": "-0.005em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-lg": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-md": [
+            "20px",
+            {
+              "lineHeight": "28px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ],
+          "label-md": [
+            "13px",
+            {
+              "lineHeight": "18px",
+              "fontWeight": "500"
+            }
+          ],
+          "data-mono": [
+            "13px",
+            {
+              "lineHeight": "18px",
+              "fontWeight": "500"
+            }
+          ],
+          "display-lg": [
+            "30px",
+            {
+              "lineHeight": "38px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "700"
+            }
+          ],
+          "label-sm": [
+            "11px",
+            {
+              "lineHeight": "16px",
+              "letterSpacing": "0.02em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-lg": [
+            "24px",
+            {
+              "lineHeight": "32px",
+              "letterSpacing": "-0.015em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "400"
+            }
+          ]
+        }
+      },
+    },
+  }</script></head><body class="bg-surface-canvas font-body-md text-on-surface antialiased"><main class="w-full min-h-screen flex items-center justify-center p-margin"><div class="flex flex-col w-full items-center justify-center py-6 px-margin">
+<div class="w-full max-w-[1040px] grid grid-cols-1 lg:grid-cols-12 rounded-xl bg-surface-card shadow-xl overflow-hidden">
+<!-- Painel Lateral Institucional / Contexto Operacional (Desktop) -->
+<div class="lg:col-span-5 bg-surface-sidebar p-8 lg:p-10 flex flex-col justify-between relative overflow-hidden text-surface-bright">
+<!-- Elemento Decorativo Gradiente Sutil -->
+<div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-gradient-to-tr from-primary-container/40 to-secondary/20 blur-3xl pointer-events-none"></div>
+<!-- Topo: Marca e Identidade Técnica -->
+<div class="relative z-10">
+<div class="flex items-center gap-space-sm mb-8">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-surface-bright shadow-sm">
+<span class="material-symbols-outlined text-[24px]">event_repeat</span>
+</div>
+<div>
+<span class="font-headline-sm text-headline-sm tracking-tight text-surface-bright block">SISAGEN</span>
+<span class="font-label-sm text-label-sm text-status-inactive tracking-widest uppercase">Operação &amp; Fila</span>
+</div>
+</div>
+<div class="space-y-space-md">
+<span class="inline-flex items-center gap-space-xs px-2.5 py-1 rounded bg-surface-sidebar/80 text-status-active-bg font-data-mono text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-status-active"></span>
+            CLUSTER AMBIENTE OPERACIONAL
+          </span>
+<h2 class="font-headline-lg text-headline-lg text-surface-bright leading-tight">
+            Gestão Concorrente &amp; Governança de Pauta
+          </h2>
+<p class="font-body-md text-body-md text-status-inactive leading-relaxed">
+            Plataforma centralizada para validação de registros, eliminação de duplicidades e auditoria contínua de agendamentos institucionais.
+          </p>
+</div>
+</div>
+<!-- Métricas / Visualização de Status ao Vivo -->
+<div class="relative z-10 py-8 my-auto">
+<div class="bg-inverse-surface/60 rounded-lg p-space-md space-y-space-sm">
+<div class="flex items-center justify-between text-label-sm font-label-sm text-status-inactive uppercase">
+<span>Integridade dos Nós</span>
+<span class="text-status-registered-bg font-data-mono flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified</span> 99.98% Ativo
+            </span>
+</div>
+<!-- Sparkline Vetorial Inline de Carga -->
+<div class="w-full h-8 flex items-end gap-1 pt-1">
+<div class="w-full h-2 rounded bg-surface-sidebar/60 overflow-hidden flex">
+<div class="bg-status-active h-full w-[42%]"></div>
+<div class="bg-status-registered h-full w-[38%]"></div>
+<div class="bg-status-pending h-full w-[12%]"></div>
+</div>
+</div>
+<div class="flex justify-between text-label-sm font-data-mono text-status-inactive">
+<span>Agendadores: 24</span>
+<span>Registros: 1.408/dia</span>
+</div>
+</div>
+</div>
+<!-- Rodapé do Painel Esquerdo -->
+<div class="relative z-10 text-label-sm font-label-sm text-status-inactive flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+<span>Criptografia de Ponta a Ponta • TLS 1.3</span>
+</div>
+</div>
+<!-- Painel Principal de Autenticação -->
+<div class="lg:col-span-7 p-8 sm:p-12 lg:p-14 flex flex-col justify-between bg-surface-card">
+<div>
+<!-- Cabeçalho do Formulário -->
+<div class="mb-8">
+<div class="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-status-active-bg text-status-active-text font-label-sm text-label-sm mb-3">
+<span class="material-symbols-outlined text-[14px]">shield</span>
+<span>Autenticação Restrita SCR-001</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-on-surface tracking-tight mb-2">
+            Acesso ao Sistema
+          </h1>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Entre com suas credenciais individuais para gerenciar a fila de agendamentos.
+          </p>
+</div>
+<!-- Banner de Feedback Contextual / Mensagem Dinâmica (Ocultável) -->
+<div class="hidden mb-6 p-space-md rounded-lg bg-feedback-error-bg text-feedback-error-text transition-all duration-200" id="auth-alert">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-[20px] text-feedback-error shrink-0">error</span>
+<div class="flex-1">
+<span class="font-label-md text-label-md block">Falha na Autenticação</span>
+<p class="font-body-sm text-body-sm mt-0.5 text-feedback-error-text" id="auth-alert-message">
+                Credenciais não conferem ou sessão expirada. Por motivos de segurança, verifique sua matrícula e tente novamente.
+              </p>
+</div>
+<button class="text-feedback-error-text hover:text-on-surface transition-colors" onclick="document.getElementById('auth-alert').classList.add('hidden')" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+<!-- Aviso Preventivo Informativo Padrão -->
+<div class="mb-6 p-space-sm rounded bg-surface-container text-on-surface-variant flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[18px] text-primary-container shrink-0">info</span>
+<span class="font-body-sm text-body-sm">
+            Sessões inativas por mais de 30 minutos são desconectadas automaticamente.
+          </span>
+</div>
+<!-- Formulário de Login -->
+<form class="space-y-5" id="login-form" onsubmit="handleLogin(event)">
+<!-- Campo Matrícula / Usuário -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1.5" for="username">
+              Usuário ou Matrícula Operacional
+            </label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-status-inactive text-[20px] pointer-events-none">
+                badge
+              </span>
+<input autocomplete="username" class="w-full h-9 pl-10 pr-3 rounded bg-surface-card text-on-surface placeholder:text-status-inactive font-body-md text-body-md shadow-sm focus:outline-none focus:bg-surface-card focus:shadow-md transition-shadow" id="username" name="username" placeholder="Ex: OP-48920 ou nome.usuario" required="" type="text"/>
+</div>
+</div>
+<!-- Campo Senha -->
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<label class="block font-label-md text-label-md text-on-surface" for="password">
+                Chave de Acesso Individual
+              </label>
+<span class="font-label-sm text-label-sm text-status-inactive uppercase tracking-wider">
+                Sensível a maiúsculas
+              </span>
+</div>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-status-inactive text-[20px] pointer-events-none">
+                lock
+              </span>
+<input autocomplete="current-password" class="w-full h-9 pl-10 pr-10 rounded bg-surface-card text-on-surface placeholder:text-status-inactive font-body-md text-body-md shadow-sm focus:outline-none focus:bg-surface-card focus:shadow-md transition-shadow" id="password" name="password" placeholder="••••••••••••" required="" type="password"/>
+<button aria-label="Alternar exibição da senha" class="absolute right-2.5 text-status-inactive hover:text-on-surface p-1 rounded flex items-center justify-center transition-colors focus:outline-none" id="toggle-password" onclick="togglePasswordVisibility()" type="button">
+<span class="material-symbols-outlined text-[20px]" id="password-visibility-icon">visibility</span>
+</button>
+</div>
+</div>
+<!-- Botão de Ação Primária -->
+<div class="pt-2">
+<button class="w-full h-9 rounded bg-primary-container hover:bg-primary text-surface-bright font-label-md text-label-md flex items-center justify-center gap-space-xs transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-fixed-dim" id="btn-submit" type="submit">
+<span id="btn-text">Entrar no Sistema</span>
+<span class="material-symbols-outlined text-[18px]" id="btn-icon">arrow_forward</span>
+<span class="hidden animate-spin material-symbols-outlined text-[18px]" id="btn-spinner">progress_activity</span>
+</button>
+</div>
+</form>
+</div>
+<!-- Rodapé Institucional e Governança -->
+<div class="mt-8 pt-6 border-t-0 space-y-2">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-label-sm font-label-sm text-status-inactive">
+<span>Sistema de Agendamento v1.0</span>
+<span class="flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-registered"></span>
+            Acesso Restrito a Usuários Autorizados
+          </span>
+</div>
+<p class="font-body-sm text-body-sm text-status-inactive leading-relaxed">
+          O acesso não autorizado constitui infração administrativa e penal conforme política de conformidade e governança de dados corporativos. Todas as ações nesta fila são rastreadas por registro nominal de transação.
+        </p>
+</div>
+</div>
+</div>
+</div>
+<script>
+  function togglePasswordVisibility() {
+    const passwordInput = document.getElementById('password');
+    const visibilityIcon = document.getElementById('password-visibility-icon');
+    
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      visibilityIcon.textContent = 'visibility_off';
+    } else {
+      passwordInput.type = 'password';
+      visibilityIcon.textContent = 'visibility';
+    }
+  }
+
+  function handleLogin(event) {
+    event.preventDefault();
+    const btnSubmit = document.getElementById('btn-submit');
+    const btnText = document.getElementById('btn-text');
+    const btnIcon = document.getElementById('btn-icon');
+    const btnSpinner = document.getElementById('btn-spinner');
+    const authAlert = document.getElementById('auth-alert');
+    
+    // Simula estado de carregamento assíncrono padrão corporativo
+    btnText.textContent = 'Validando Credenciais...';
+    btnIcon.classList.add('hidden');
+    btnSpinner.classList.remove('hidden');
+    btnSubmit.disabled = true;
+    authAlert.classList.add('hidden');
+
+    setTimeout(() => {
+      // Demonstração da resposta de erro estruturada sem vazamento de escopo
+      btnText.textContent = 'Entrar no Sistema';
+      btnIcon.classList.remove('hidden');
+      btnSpinner.classList.add('hidden');
+      btnSubmit.disabled = false;
+      
+      authAlert.classList.remove('hidden');
+    }, 900);
+  }
+</script></main></body></html>
