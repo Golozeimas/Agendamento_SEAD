@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum PerfilUsuario {
+  ADMINISTRADOR
+  AGENDADOR
+  CADASTRADOR
+}
+
+enum StatusAgendamento {
+  PENDENTE
+  CADASTRADO
+}
+
+model Usuario {
+  id        String        @id @default(uuid())
+  nome      String
+  email     String        @unique
+  senha     String
+  perfil    PerfilUsuario
+  ativo     Boolean       @default(true)
+
+  criadoEm  DateTime      @default(now())
+  atualizadoEm DateTime   @updatedAt
+
+  agendamentosCriados     Agendamento[] @relation("CriadoPor")
+  agendamentosAtualizados Agendamento[] @relation("AtualizadoPor")
+
+  historicos HistoricoAgendamento[]
+}
+
+model Agendamento {
+  id String @id @default(uuid())
+
+  nome     String
+  rua      String
+  quadra   String?
+  lote     String?
+  cidade   String
+  telefone String
+
+  dataSolicitacao DateTime
+
+  status StatusAgendamento @default(PENDENTE)
+
+  observacoes String?
+
+  criadoEm     DateTime @default(now())
+  atualizadoEm DateTime @updatedAt
+
+  arquivadoEm DateTime?
+
+  criadoPorId String
+
+  criadoPor Usuario @relation("CriadoPor", fields: [criadoPorId], references: [id])
+
+  atualizadoPorId String?
+
+  atualizadoPor Usuario? @relation("AtualizadoPor", fields: [atualizadoPorId], references: [id])
+
+  historicos HistoricoAgendamento[]
+
+  @@index([status])
+  @@index([nome])
+  @@index([telefone])
+  @@index([cidade])
+}
+
+model HistoricoAgendamento {
+  id String @id @default(uuid())
+
+  agendamentoId String
+  usuarioId     String
+
+  acao String
+
+  dadosAnteriores Json?
+  dadosNovos      Json?
+
+  criadoEm DateTime @default(now())
+
+  agendamento Agendamento @relation(fields: [agendamentoId], references: [id])
+
+  usuario Usuario @relation(fields: [usuarioId], references: [id])
+
+  @@index([agendamentoId])
+}
