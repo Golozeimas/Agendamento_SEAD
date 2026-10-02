@@ -17,7 +17,7 @@ export default function App() {
       <Route path="/solicitacoes/nova" element={<RequestForm />} />
       <Route path="/solicitacoes/:id" element={<RequestDetails />} />
       <Route path="/usuarios" element={<Users />} />
-      <Route path="*" element={<section className="card empty"><h1>P?gina n?o encontrada</h1><Link to="/solicitacoes">Voltar para a fila</Link></section>} />
+      <Route path="*" element={<section className="card empty"><h1>Página não encontrada</h1><Link to="/solicitacoes">Voltar para a fila</Link></section>} />
     </Route>
   </Routes></BrowserRouter></QueryClientProvider>
 }

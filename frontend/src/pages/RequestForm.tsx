@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, useWatch } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import { Modal, Notice, PageHeader, Section, StatusBadge, Unavailable } from '../components/ui'
 import { useRequests } from '../services/requests'
@@ -17,8 +17,8 @@ export function RequestForm() {
   const [inspect, setInspect] = useState(false)
   const [ignored, setIgnored] = useState('')
   const [message, setMessage] = useState('')
-  const { register, handleSubmit, watch, getValues, formState: { errors, isDirty } } = useForm<Fields>({ defaultValues: readDraft() })
-  const values = watch()
+  const { register, handleSubmit, control, getValues, formState: { errors, isDirty } } = useForm<Fields>({ defaultValues: readDraft() })
+  const values = useWatch({ control }) as Fields
   const phone = values.telefone.replace(/\D/g, '')
   const duplicate = phone.length >= 10 ? query.data?.find(item => item.telefone.replace(/\D/g, '') === phone && item.cidade.toLocaleLowerCase() === values.cidade.toLocaleLowerCase()) : undefined
   useEffect(() => {
