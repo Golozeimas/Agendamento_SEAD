@@ -37,8 +37,8 @@ export function Layout() {
   }, [open])
   return <><a className="skip-link" href="#main">Ir para o conteúdo</a><GovernmentBar /><header className="topbar"><div className="topbar-inner">
     <Link className="brand" to="/solicitacoes"><GovernmentBrand /></Link>
-    <button ref={buttonRef} className="mobile-menu" aria-expanded={open} aria-controls="main-nav" onClick={() => setOpen(!open)}>Menu</button>
     <Link className="session-link button" to="/login"><Icon name="person" /> Acessar conta</Link>
+    <button ref={buttonRef} className="mobile-menu" aria-expanded={open} aria-controls="main-nav" onClick={() => setOpen(!open)}>Menu</button>
   </div><div className="navigation-inner">
     <nav ref={menuRef} id="main-nav" aria-label="Navegação principal" className={open ? 'open' : ''}>
       <NavLink to="/solicitacoes" onClick={() => setOpen(false)}><Icon name="calendar" /> Solicitações</NavLink><NavLink to="/usuarios" onClick={() => setOpen(false)}><Icon name="person" /> Usuários <span className="mini">Admin</span></NavLink>
