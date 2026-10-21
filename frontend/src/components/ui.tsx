@@ -6,15 +6,44 @@ export function Icon({ name }: { name: 'calendar' | 'person' | 'location' | 'not
   const paths = { calendar: 'M8 2v4m8-4v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14H3V6a2 2 0 0 1 2-2Z M7 14h3m4 0h3m-10 3h3', person: 'M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0ZM4 21v-3a8 8 0 0 1 16 0v3', location: 'M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0ZM15 10a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z', note: 'M5 3h14v14l-4 4H5V3Zm3 5h8m-8 4h8m-8 4h4', shield: 'M12 2 3 6v6c0 5 9 10 9 10s9-5 9-10V6l-9-4Zm-4 10 3 3 5-6', arrow: 'M4 12h16m-6-6 6 6-6 6', plus: 'M12 4v16M4 12h16' }
   return <svg className="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={paths[name]} /></svg>
 }
+export function GovernmentBar() {
+  return <div className="government-bar"><div className="government-bar-inner"><span>GOVERNO DO ESTADO DO PIAUÍ</span><div><a href="https://transparencia.pi.gov.br/" target="_blank" rel="noreferrer">Portal da Transparência ↗</a><a href="https://www.pi.gov.br/" target="_blank" rel="noreferrer">Governo ↗</a></div></div></div>
+}
+export function GovernmentBrand() {
+  return <><img className="government-logo" src="/brand/governo-piaui.svg" alt="Governo do Piauí" width="176" height="106" /><span className="brand-divider" aria-hidden="true" /><span className="brand-title">Sistema de Agendamento<small>Gestão de solicitações e atendimentos</small></span></>
+}
+export function GovernmentFooter() {
+  return <footer className="government-footer"><div><span><strong>SISAGEN</strong> · Sistema de Agendamento</span><small>Gestão de solicitações e atendimentos</small></div><span>Piauí · Brasil</span></footer>
+}
 export function Layout() {
   const [open, setOpen] = useState(false)
-  return <><a className="skip-link" href="#main">Ir para o conteúdo</a><header className="topbar">
-    <Link className="brand" to="/solicitacoes"><span className="brand-icon"><Icon name="calendar" /></span><span>Sistema de Agendamento<small>Operações & Registro</small></span></Link>
-    <button className="mobile-menu" aria-expanded={open} aria-controls="main-nav" onClick={() => setOpen(!open)}>Menu</button>
-    <nav id="main-nav" aria-label="Navegação principal" className={open ? 'open' : ''}>
-      <NavLink to="/solicitacoes" onClick={() => setOpen(false)}>Solicitações</NavLink><NavLink to="/usuarios" onClick={() => setOpen(false)}>Usuários <span className="mini">Admin</span></NavLink>
-    </nav><Link className="session-link" to="/login">Acessar conta</Link>
-  </header><main id="main" className="page"><Outlet /></main></>
+  const menuRef = useRef<HTMLElement>(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
+  useEffect(() => {
+    if (!open) return
+    const dismissOutside = (event: PointerEvent) => {
+      const target = event.target as Node
+      if (!menuRef.current?.contains(target) && !buttonRef.current?.contains(target)) setOpen(false)
+    }
+    const dismissEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') { setOpen(false); buttonRef.current?.focus() }
+    }
+    document.addEventListener('pointerdown', dismissOutside)
+    document.addEventListener('keydown', dismissEscape)
+    return () => {
+      document.removeEventListener('pointerdown', dismissOutside)
+      document.removeEventListener('keydown', dismissEscape)
+    }
+  }, [open])
+  return <><a className="skip-link" href="#main">Ir para o conteúdo</a><GovernmentBar /><header className="topbar"><div className="topbar-inner">
+    <Link className="brand" to="/solicitacoes"><GovernmentBrand /></Link>
+    <Link className="session-link button" to="/login"><Icon name="person" /> Acessar conta</Link>
+    <button ref={buttonRef} className="mobile-menu" aria-expanded={open} aria-controls="main-nav" onClick={() => setOpen(!open)}>Menu</button>
+  </div><div className="navigation-inner">
+    <nav ref={menuRef} id="main-nav" aria-label="Navegação principal" className={open ? 'open' : ''}>
+      <NavLink to="/solicitacoes" onClick={() => setOpen(false)}><Icon name="calendar" /> Solicitações</NavLink><NavLink to="/usuarios" onClick={() => setOpen(false)}><Icon name="person" /> Usuários <span className="mini">Admin</span></NavLink>
+    </nav><span className="navigation-caption">PLATAFORMA DE ATENDIMENTO</span>
+  </div></header><main id="main" className="page"><Outlet /></main><GovernmentFooter /></>
 }
 export function PageHeader({ eyebrow, title, description, children }: { eyebrow: ReactNode; title: string; description: string; children?: ReactNode }) {
   return <header className="page-heading"><div><div className="eyebrow">{eyebrow}</div><h1>{title}</h1><p>{description}</p></div><div className="actions">{children}</div></header>
@@ -29,7 +58,7 @@ export function Unavailable({ children }: { children?: ReactNode }) {
   return <Notice>{children ?? 'Esta operação ainda não está disponível. Aguarde a habilitação do serviço pelo administrador.'}</Notice>
 }
 export function StatusBadge({ status }: { status: string }) {
-  return <span className={`badge ${status === 'CADASTRADO' ? 'registered' : 'pending'}`}>{status === 'CADASTRADO' ? 'Cadastrado' : 'Pendente'}</span>
+  return <span className={`badge status-badge ${status === 'CADASTRADO' ? 'registered' : 'pending'}`}><span className="status-dot" aria-hidden="true" />{status === 'CADASTRADO' ? 'Cadastrado' : 'Pendente'}</span>
 }
 export function Stats({ items }: { items: { label: string; value: string | number; hint: string; tone?: string; eyebrow?: string }[] }) {
   return <div className="stats">{items.map(item => <section className={`card stat ${item.tone ?? ''}`} key={item.label}><span className="stat-icon"><Icon name={item.tone === 'green' ? 'shield' : 'calendar'} /></span><p className="stat-eyebrow">{item.eyebrow ?? item.label}</p>{item.eyebrow && <h2>{item.label}</h2>}<div className="stat-value"><strong>{item.value}</strong><small>{item.hint}</small></div></section>)}</div>
