@@ -125,17 +125,73 @@ try {
   await click('Cancelar')
   assert.equal(writes, 0)
   console.log('PASS user dialog, missing-service feedback, no unauthorized writes')
-  for (const width of [768, 390]) {
+  for (const width of [1440, 768, 390, 320]) {
     await cdp('Emulation.setDeviceMetricsOverride', { width, height: 900, deviceScaleFactor: 1, mobile: false })
     for (const path of ['/login', '/solicitacoes', '/solicitacoes/nova', '/solicitacoes/request-1', '/usuarios']) {
       await navigate(path)
-      await waitFor('document.documentElement.scrollWidth <= innerWidth')
+      await waitFor('document.documentElement.scrollWidth <= document.documentElement.clientWidth')
+      if (width <= 640) {
+        const smallControls = await evaluate(`Array.from(document.querySelectorAll('input,select,textarea')).filter(el => !el.disabled && el.getClientRects().length && parseFloat(getComputedStyle(el).fontSize) < 16).map(el => el.outerHTML)`)
+        assert.deepEqual(smallControls, [], `Controls must use at least 16px: ${path}, ${width}px`)
+      }
+      if (path === '/solicitacoes' || path === '/usuarios') {
+        const columns = await evaluate('getComputedStyle(document.querySelector(".stats")).gridTemplateColumns.split(" ").length')
+        assert.equal(columns, width > 900 ? 3 : width > 640 ? 2 : 1)
+        const listFits = await evaluate('(() => { const el = document.querySelector(".table-scroll"); return el.scrollWidth <= el.clientWidth; })()')
+        assert.equal(listFits, true, `List must fit without horizontal scrolling: ${path}, ${width}px`)
+      }
+      if (path === '/solicitacoes') {
+        await waitFor('document.querySelectorAll("tbody tr").length === 10')
+        assert.equal(await evaluate(`Array.from(document.querySelectorAll('.detail-link')).every(el => { const r = el.getBoundingClientRect(); return r.width > 0 && r.left >= 0 && r.right <= document.documentElement.clientWidth })`), true)
+        await click('Ver Detalhes ›')
+        await waitFor('document.querySelector("h1")?.textContent === "Álvaro Silva"')
+        await navigate(path)
+        await waitFor('document.querySelectorAll("tbody tr").length === 10')
+      }
+      if (path === '/solicitacoes/nova' && width <= 640) {
+        const bar = await evaluate(`(() => { const el = document.querySelector('.bottom-bar'); const buttons = Array.from(el.querySelectorAll('button')); const primary = el.querySelector('.primary'); return { sticky: getComputedStyle(el).position, height: el.getBoundingClientRect().height, buttons: buttons.length, visible: buttons.every(button => button.getClientRects().length && button.getBoundingClientRect().right <= document.documentElement.clientWidth), primaryColumns: getComputedStyle(primary).gridColumn, safeArea: Array.from(document.styleSheets).filter(sheet => { try { return !!sheet.cssRules } catch { return false } }).some(sheet => Array.from(sheet.cssRules).some(rule => rule.cssText.includes('safe-area-inset-bottom'))) }; })()`)
+        assert.equal(bar.sticky, 'sticky')
+        assert.equal(bar.buttons, 3)
+        assert.equal(bar.visible, true)
+        assert.equal(bar.primaryColumns, '1 / -1')
+        assert.ok(bar.height <= 110, `Action bar should be compact, measured ${bar.height}px`)
+        assert.equal(bar.safeArea, true)
+        await evaluate('window.scrollTo(0, document.body.scrollHeight)')
+        await screenshot(`form-actions-${width}`)
+        await evaluate('window.scrollTo(0, 0)')
+      }
+      if (path === '/usuarios' && width <= 640) {
+        await click('+ Novo Usuário')
+        await waitFor('!!document.querySelector("dialog[open]")')
+        assert.equal(await evaluate(`Array.from(document.querySelectorAll('dialog input')).every(el => parseFloat(getComputedStyle(el).fontSize) >= 16)`), true)
+        assert.equal(await evaluate('document.querySelector("dialog").scrollWidth <= document.querySelector("dialog").clientWidth'), true)
+        await screenshot(`users-dialog-${width}`)
+        await click('Cancelar')
+      }
       await screenshot(`${path.split('/').filter(Boolean).join('-')}-${width}`)
     }
+    if (width <= 640) {
+      await click('Menu')
+      assert.equal(await evaluate('getComputedStyle(document.querySelector("#main-nav")).flexDirection'), 'column')
+      assert.equal(await evaluate('document.querySelector(".mobile-menu").getAttribute("aria-expanded")'), 'true')
+      await cdp('Input.dispatchKeyEvent', { type: 'keyDown', key: 'Tab', code: 'Tab', windowsVirtualKeyCode: 9 })
+      await cdp('Input.dispatchKeyEvent', { type: 'keyUp', key: 'Tab', code: 'Tab', windowsVirtualKeyCode: 9 })
+      assert.equal(await evaluate('!!document.activeElement.closest("#main-nav")'), true)
+      await cdp('Input.dispatchKeyEvent', { type: 'keyDown', key: 'Escape', code: 'Escape', windowsVirtualKeyCode: 27 })
+      await cdp('Input.dispatchKeyEvent', { type: 'keyUp', key: 'Escape', code: 'Escape', windowsVirtualKeyCode: 27 })
+      await waitFor('document.querySelector(".mobile-menu").getAttribute("aria-expanded") === "false"')
+      assert.equal(await evaluate('document.activeElement.className'), 'mobile-menu')
+      await click('Menu')
+      await evaluate('document.querySelector("h1").dispatchEvent(new PointerEvent("pointerdown", { bubbles: true }))')
+      await waitFor('document.querySelector(".mobile-menu").getAttribute("aria-expanded") === "false"')
+      await click('Menu')
+      await screenshot(`mobile-menu-${width}`)
+      await evaluate('document.querySelector("#main-nav a").click()')
+      await waitFor('document.querySelector(".mobile-menu").getAttribute("aria-expanded") === "false"')
+      console.log(`PASS ${width}px menu selection, outside click, Escape and keyboard focus`)
+    }
   }
-  await click('Menu')
-  assert.equal(await evaluate('document.querySelector(".mobile-menu").getAttribute("aria-expanded")'), 'true')
-  console.log('PASS all five screens at tablet/mobile widths without page overflow; mobile navigation')
+  console.log('PASS 1440/768/390/320px layouts, list actions, stats columns, 16px inputs, compact sticky action bar and safe-area rule')
   mode = 'empty'
   await navigate('/solicitacoes')
   await waitFor('document.body.textContent.includes("Nenhuma solicitação disponível")')

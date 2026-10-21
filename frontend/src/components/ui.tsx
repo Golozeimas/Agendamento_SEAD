@@ -8,13 +8,31 @@ export function Icon({ name }: { name: 'calendar' | 'person' | 'location' | 'not
 }
 export function Layout() {
   const [open, setOpen] = useState(false)
-  return <><a className="skip-link" href="#main">Ir para o conteúdo</a><header className="topbar">
+  const menuRef = useRef<HTMLElement>(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
+  useEffect(() => {
+    if (!open) return
+    const dismissOutside = (event: PointerEvent) => {
+      const target = event.target as Node
+      if (!menuRef.current?.contains(target) && !buttonRef.current?.contains(target)) setOpen(false)
+    }
+    const dismissEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') { setOpen(false); buttonRef.current?.focus() }
+    }
+    document.addEventListener('pointerdown', dismissOutside)
+    document.addEventListener('keydown', dismissEscape)
+    return () => {
+      document.removeEventListener('pointerdown', dismissOutside)
+      document.removeEventListener('keydown', dismissEscape)
+    }
+  }, [open])
+  return <><a className="skip-link" href="#main">Ir para o conteúdo</a><header className="topbar"><div className="topbar-inner">
     <Link className="brand" to="/solicitacoes"><span className="brand-icon"><Icon name="calendar" /></span><span>Sistema de Agendamento<small>Operações & Registro</small></span></Link>
-    <button className="mobile-menu" aria-expanded={open} aria-controls="main-nav" onClick={() => setOpen(!open)}>Menu</button>
-    <nav id="main-nav" aria-label="Navegação principal" className={open ? 'open' : ''}>
+    <button ref={buttonRef} className="mobile-menu" aria-expanded={open} aria-controls="main-nav" onClick={() => setOpen(!open)}>Menu</button>
+    <nav ref={menuRef} id="main-nav" aria-label="Navegação principal" className={open ? 'open' : ''}>
       <NavLink to="/solicitacoes" onClick={() => setOpen(false)}>Solicitações</NavLink><NavLink to="/usuarios" onClick={() => setOpen(false)}>Usuários <span className="mini">Admin</span></NavLink>
     </nav><Link className="session-link" to="/login">Acessar conta</Link>
-  </header><main id="main" className="page"><Outlet /></main></>
+  </div></header><main id="main" className="page"><Outlet /></main></>
 }
 export function PageHeader({ eyebrow, title, description, children }: { eyebrow: ReactNode; title: string; description: string; children?: ReactNode }) {
   return <header className="page-heading"><div><div className="eyebrow">{eyebrow}</div><h1>{title}</h1><p>{description}</p></div><div className="actions">{children}</div></header>
