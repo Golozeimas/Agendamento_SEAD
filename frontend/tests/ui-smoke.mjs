@@ -57,7 +57,11 @@ const waitFor = async expression => { for (let i = 0; i < 80; i++) { if (await e
 const navigate = async path => { await cdp('Page.navigate', { url: base + path }); await waitFor('!!document.querySelector("h1")'); }
 const click = text => evaluate(`(() => { const el = Array.from(document.querySelectorAll('button,a')).find(el => el.textContent.trim() === ${JSON.stringify(text)}); if (!el) throw new Error('Control not found'); el.focus(); el.click(); })()`)
 const fill = (selector, value) => evaluate(`(() => { const el = document.querySelector(${JSON.stringify(selector)}); const setter = Object.getOwnPropertyDescriptor(el instanceof HTMLTextAreaElement ? HTMLTextAreaElement.prototype : HTMLInputElement.prototype, 'value').set; setter.call(el, ${JSON.stringify(value)}); el.dispatchEvent(new Event('input', { bubbles: true })); el.dispatchEvent(new Event('change', { bubbles: true })); })()`)
-const screenshot = async name => { const { data } = await cdp('Page.captureScreenshot', { format: 'png', captureBeyondViewport: false }); await writeFile(join(output, name + '.png'), Buffer.from(data, 'base64')) }
+const screenshot = async name => {
+  await evaluate('document.fonts.ready.then(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))))')
+  const { data } = await cdp('Page.captureScreenshot', { format: 'png', captureBeyondViewport: false })
+  await writeFile(join(output, name + '.png'), Buffer.from(data, 'base64'))
+}
 try {
   await cdp('Runtime.enable')
   await cdp('Page.enable')

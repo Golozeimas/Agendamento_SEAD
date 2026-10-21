@@ -204,6 +204,7 @@ legend { font-size: 12px; font-weight: 600; margin-bottom: 10px; }
   .login-aside p { max-width: 440px; margin-bottom: 0; }
   .login-kicker { margin-bottom: 15px; }
   .login-features, .login-aside-bottom { display: none; }
+  .login-art { opacity: .12; right: -170px; bottom: -100px; }
   .login-form { padding: 32px 36px; }
   .login-environment { display: none; }
 }
